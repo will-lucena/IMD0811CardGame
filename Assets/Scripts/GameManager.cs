@@ -25,6 +25,5 @@ public class GameManager : MonoBehaviour
         GameObject card = Instantiate(cardPrefab) as GameObject;
         card.GetComponent<CardScript>().cardInfos = CARDS[Random.Range(0, CARDS.Length)];
         card.transform.SetParent(parent);
-
     }
 }

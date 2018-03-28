@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using Interfaces;
 
-public class CardScript : MonoBehaviour
+public class CardScript : MonoBehaviour, ITargetable
 {
     public Card cardInfos;
 
@@ -12,6 +13,15 @@ public class CardScript : MonoBehaviour
     [SerializeField] private Text cardAtk;
     [SerializeField] private Text cardDef;
     [SerializeField] private Text cardHealth;
+    [SerializeField] private Image border;
+
+    public void subscribeToClickable()
+    {
+        if (cardInfos.type == Enums.Type.HERO)
+        {
+            Clickable.showTargets += targetMyself;
+        }
+    }
 
     void Start()
     {
@@ -21,5 +31,12 @@ public class CardScript : MonoBehaviour
         cardAtk.text = cardInfos.atk.ToString();
         cardDef.text = cardInfos.def.ToString();
         cardHealth.text = cardInfos.health.ToString();
+
+        subscribeToClickable();
+    }
+
+    private void targetMyself()
+    {
+        border.color = Color.green;
     }
 }
