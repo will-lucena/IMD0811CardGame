@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static event System.Action cancelActions;
+
 
     public Card[] CARDS;
     [SerializeField] private GameObject cardPrefab;
@@ -17,7 +19,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //find a non hardcoded way to do it
+        if (Input.GetMouseButton(1) && cancelActions != null)
+        {
+            cancelActions();
+        }
     }
 
     public void pushCard(Transform parent)
