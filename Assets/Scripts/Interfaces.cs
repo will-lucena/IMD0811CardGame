@@ -1,4 +1,6 @@
-﻿namespace Interfaces
+﻿using UnityEngine;
+
+namespace Interfaces
 {
     public interface ITargetable
     {

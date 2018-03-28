@@ -5,13 +5,13 @@ using UnityEngine.EventSystems;
 
 public class Clickable : MonoBehaviour, IPointerClickHandler
 {
-    public static event System.Action showTargets;
+    public static event System.Action<Transform> showTargets;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (showTargets != null)
         {
-            showTargets();
+            showTargets(transform.parent);
         }
     }
 }

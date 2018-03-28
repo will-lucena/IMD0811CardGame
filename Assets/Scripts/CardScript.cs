@@ -35,8 +35,11 @@ public class CardScript : MonoBehaviour, ITargetable
         subscribeToClickable();
     }
 
-    private void targetMyself()
+    private void targetMyself(Transform parent)
     {
-        border.color = Color.green;
+        if (parent != transform.parent)
+        {
+            border.color = Color.green;
+        }
     }
 }
