@@ -29,13 +29,14 @@ public class CardScript : MonoBehaviour, ITargetable
 
     void Start()
     {
+        //*
         cardName.text = cardInfos.name;
         cardDescription.text = cardInfos.description;
         cardImage.sprite = cardInfos.image;
         cardAtk.text = cardInfos.atk.ToString();
         cardDef.text = cardInfos.def.ToString();
         cardHealth.text = cardInfos.health.ToString();
-
+        /**/
         subscribeToClickable();
         aimed = false;
     }
