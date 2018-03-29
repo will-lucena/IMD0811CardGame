@@ -56,7 +56,7 @@ public class CardScript : MonoBehaviour, ITargetable
     private void targetMyself(Transform parent)
     {
         //fix bug
-        if (!transform.parent.CompareTag("Hand") && parent != transform.parent)
+        if (!inHand() && !isMyCard(parent))
         {
             //change state to Aimed
             aimed = true;
@@ -66,6 +66,16 @@ public class CardScript : MonoBehaviour, ITargetable
     private void cancelAtk()
     {
         aimed = false;
+    }
+
+    private bool inHand()
+    {
+        return transform.parent.CompareTag("Hand");
+    }
+
+    private bool isMyCard(Transform parent)
+    {
+        return transform.parent.CompareTag(parent.tag);
     }
 
 }

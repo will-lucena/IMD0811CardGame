@@ -9,7 +9,7 @@ public class Clickable : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (showTargets != null)
+        if (showTargets != null && !transform.parent.CompareTag("Hand"))
         {
             showTargets(transform.parent);
         }
