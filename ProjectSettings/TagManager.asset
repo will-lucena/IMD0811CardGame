@@ -7,6 +7,9 @@ TagManager:
   - Hand
   - BattleP2
   - BattleP1
+  - Push
+  - Dead
+  - PlayerInfos
   layers:
   - Default
   - TransparentFX
