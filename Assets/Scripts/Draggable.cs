@@ -14,7 +14,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentToReturnTo = transform.parent;
-        setupPlaceholder();
+        //setupPlaceholder();
         transform.SetParent(parentToReturnTo.parent);
         offsetX = transform.position.x - eventData.position.x;
         offsetY = transform.position.y - eventData.position.y;
@@ -26,6 +26,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         Vector2 newPos = new Vector2(eventData.position.x + offsetX, eventData.position.y + offsetY);
         transform.position = newPos;
 
+        /*
         int tempSiblingIndex = placeholderParent.childCount;
 
         if (placeholder.transform.parent != placeholderParent)
@@ -46,9 +47,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 break;
             }
         }
-
+        
         placeholder.transform.SetSiblingIndex(tempSiblingIndex);
-
+        /**/
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -56,7 +57,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
+        //transform.SetSiblingIndex(placeholder.transform.GetSiblingIndex());
 
         Destroy(placeholder);
     }

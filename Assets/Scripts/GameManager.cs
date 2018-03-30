@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         GameObject card = Instantiate(cardPrefab) as GameObject;
         card.GetComponent<CardScript>().cardInfos = CARDS[Random.Range(0, CARDS.Length)];
         card.transform.SetParent(parent);
-        card.transform.localScale = new Vector3(xAdjust, yAdjust, 1f);
-        //card.transform.localScale = Vector3.one;
+        //card.transform.localScale = new Vector3(xAdjust, yAdjust, 1f);
+        card.transform.localScale = Vector3.one;
     }
 }
