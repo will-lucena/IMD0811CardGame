@@ -1,19 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Enums;
 
-[CreateAssetMenu(fileName = "Card", menuName = "Card")]
-public class Card : ScriptableObject
+public abstract class Card : ScriptableObject
 {
-    [SerializeField] private new string name;
-    [SerializeField] private string description;
-    [SerializeField] private Sprite image;
-    [SerializeField] private int atk;
-    [SerializeField] private int def;
-    [SerializeField] private int health;
-    [SerializeField] private Type type;
-
+    [SerializeField] protected new string name;
+    [SerializeField] protected string description;
+    [SerializeField] protected Sprite image;
+    [SerializeField] protected int atk;
+    [SerializeField] protected int def;
+    [SerializeField] protected int health;
+    protected Type type;
 
     public string getName()
     {

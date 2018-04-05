@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using Interfaces;
+using Enums;
 
 public class CardScript : MonoBehaviour, ITargetable
 {
@@ -21,7 +21,7 @@ public class CardScript : MonoBehaviour, ITargetable
 
     public void subscribeToClickable()
     {
-        if (cardInfos.getType() == Enums.Type.HERO)
+        if (cardInfos.getType() == Type.HERO)
         {
             Clickable.showTargets += targetMyself;
         }
@@ -33,19 +33,15 @@ public class CardScript : MonoBehaviour, ITargetable
         power = cardInfos.getAtk();
         armor = cardInfos.getDef();
         health = cardInfos.getHp();
-        //*
         updateDisplay();
-        /**/
         subscribeToClickable();
         border.color = Color.white;
     }
 
     private void targetMyself(GameObject card)
     {
-        //fix bug
         if (!inHand() && !isMyCard(card.transform.parent))
         {
-            //change state to Aimed
             border.color = Color.green;
         }
     }

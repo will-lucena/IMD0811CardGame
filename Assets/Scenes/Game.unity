@@ -213,9 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CARDS:
-  - {fileID: 11400000, guid: e14aedbc9923b4d678748d1139b66930, type: 2}
-  - {fileID: 11400000, guid: 69602fdd7065b44e5bc58b9ba9535ee0, type: 2}
-  - {fileID: 11400000, guid: 57382fc3e574640d3905a161c3e5412b, type: 2}
+  - {fileID: 11400000, guid: 4675378d18d754ac2bcae435cf91e3ff, type: 2}
+  - {fileID: 11400000, guid: 4617b48b871c842e4aebe4c58b6cf414, type: 2}
+  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
   cardPrefab: {fileID: 1136630866631454, guid: a2c13159f06cff84f93d13c446f78423, type: 2}
 --- !u!4 &198686824
 Transform:
