@@ -15,58 +15,39 @@ public class CardScript : MonoBehaviour, ITargetable
     [SerializeField] private Text cardHealth;
     [SerializeField] private Image border;
 
-    private bool aimed;
+    public int power;
+    public int armor;
+    public int health;
 
     public void subscribeToClickable()
     {
-        if (cardInfos.type == Enums.Type.HERO)
+        if (cardInfos.getType() == Enums.Type.HERO)
         {
             Clickable.showTargets += targetMyself;
-            //unhardcoded this
-            GameManager.cancelActions += cancelAtk;
         }
     }
 
     void Start()
     {
+        GameManager.cancelBattleLog += outOfBattle;
+        power = cardInfos.getAtk();
+        armor = cardInfos.getDef();
+        health = cardInfos.getHp();
         //*
-        cardName.text = cardInfos.name;
-        cardDescription.text = cardInfos.description;
-        cardImage.sprite = cardInfos.image;
-        cardAtk.text = cardInfos.atk.ToString();
-        cardDef.text = cardInfos.def.ToString();
-        cardHealth.text = cardInfos.health.ToString();
+        updateDisplay();
         /**/
         subscribeToClickable();
-        aimed = false;
+        border.color = Color.white;
     }
 
-    private void Update()
-    {
-        //implement it with animations and remove from update
-        if (aimed)
-        {
-            border.color = Color.green;
-        }
-        else
-        {
-            border.color = Color.white;
-        }
-    }
-
-    private void targetMyself(Transform parent)
+    private void targetMyself(GameObject card)
     {
         //fix bug
-        if (!inHand() && !isMyCard(parent))
+        if (!inHand() && !isMyCard(card.transform.parent))
         {
             //change state to Aimed
-            aimed = true;
+            border.color = Color.green;
         }
-    }
-
-    private void cancelAtk()
-    {
-        aimed = false;
     }
 
     private bool inHand()
@@ -74,9 +55,37 @@ public class CardScript : MonoBehaviour, ITargetable
         return transform.parent.CompareTag("Hand");
     }
 
-    private bool isMyCard(Transform parent)
+    private bool isMyCard(Transform cardParent)
     {
-        return transform.parent.CompareTag(parent.tag);
+        return transform.parent.CompareTag(cardParent.tag);
+    }
+
+    public void subscribeToBattle()
+    {
+        GameManager.battleLog += updateDisplay;
+        Debug.Log(cardName.text + " entrou em batalha");
+    }
+
+    private void outOfBattle()
+    {
+        GameManager.battleLog -= updateDisplay;
+        Debug.Log(cardName.text + " saiu da batalha");
+        border.color = Color.white;
+    }
+
+    private void updateDisplay()
+    {
+        cardName.text = cardInfos.name;
+        cardDescription.text = cardInfos.getDescription();
+        cardImage.sprite = cardInfos.getImage();
+        cardAtk.text = power.ToString();
+        cardDef.text = armor.ToString();
+        cardHealth.text = health.ToString();
+
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
 }

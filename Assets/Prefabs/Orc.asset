@@ -15,6 +15,6 @@ MonoBehaviour:
   description: An orc
   image: {fileID: 0}
   atk: 1
-  def: 3
-  health: 3
+  def: 2
+  health: 4
   type: 0
