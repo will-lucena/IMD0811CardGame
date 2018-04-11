@@ -4,6 +4,7 @@ using Enums;
 public class GameManager : MonoBehaviour
 {
     public Card[] CARDS;
+    public GameObject[] deadZone;
     [SerializeField] private GameObject cardPrefab;
 
     public static event System.Action battleLog;
@@ -67,6 +68,13 @@ public class GameManager : MonoBehaviour
             {
                 battleLog();
             }
+
+            if (card.health <= 0)
+            {
+                //change it to move to correct deadzone
+                deadZone[1].GetComponent<Dead>().addToStack(obj);
+            }
+
         }
 
         if (cancelBattleLog != null)

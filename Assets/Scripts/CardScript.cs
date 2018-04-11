@@ -2,8 +2,9 @@
 using UnityEngine.UI;
 using Interfaces;
 using Enums;
+using System.Text;
 
-public class CardScript : MonoBehaviour, ITargetable
+public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 {
     public Card cardInfos;
 
@@ -77,11 +78,40 @@ public class CardScript : MonoBehaviour, ITargetable
         cardAtk.text = power.ToString();
         cardDef.text = armor.ToString();
         cardHealth.text = health.ToString();
+    }
 
-        if (health <= 0)
+    public string show()
+    {
+        StringBuilder sb = new StringBuilder();
+
+        sb.Append("Card: ");
+        sb.Append(cardInfos.name);
+
+        return sb.ToString();
+    }
+
+    public void onClickAction()
+    {
+        if (Clickable.cardSelected == null)
         {
-            gameObject.SetActive(false);
+            Clickable.cardSelected = gameObject;
+            Clickable.checkShowTargets(gameObject);
+        }
+        else if (Clickable.cardSelected != null && Clickable.cardSelected != gameObject)
+        {
+            Clickable.checkSelected(gameObject);
+            Clickable.cardSelected = null;
         }
     }
 
+    public void selfRemove()
+    {
+        Destroy(this);
+    }
+
+    private void OnDisable()
+    {
+        GameManager.battleLog -= updateDisplay;
+        Clickable.showTargets -= targetMyself;
+    }
 }

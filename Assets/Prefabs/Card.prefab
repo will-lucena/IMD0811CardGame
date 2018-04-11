@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 114247913632172408}
   - component: {fileID: 114426679503402220}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfafb10a32cf0416b95c2eeefb2b7d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placeholderParent: {fileID: 0}
   parentToReturnTo: {fileID: 0}
 --- !u!114 &114247913632172408
 MonoBehaviour:
@@ -315,10 +314,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 75
-  m_MinHeight: 90
-  m_PreferredWidth: 75
-  m_PreferredHeight: 90
+  m_MinWidth: 115
+  m_MinHeight: 150
+  m_PreferredWidth: 115
+  m_PreferredHeight: 150
   m_FlexibleWidth: 0
   m_FlexibleHeight: 0
   m_LayoutPriority: 1
@@ -521,6 +520,9 @@ MonoBehaviour:
   cardDef: {fileID: 114228552471089012}
   cardHealth: {fileID: 114474891039329906}
   border: {fileID: 114931357554772014}
+  power: 0
+  armor: 0
+  health: 0
 --- !u!114 &114931357554772014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -686,7 +688,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1136630866631454}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -702,10 +704,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0386755, y: 0.061000004}
-  m_AnchorMax: {x: 0.13964902, y: 0.27335298}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 115, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224696731418359316
 RectTransform:

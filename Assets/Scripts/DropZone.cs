@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class DropZone : MonoBehaviour, IDropHandler
 {
     public void OnDrop(PointerEventData eventData)
     {
@@ -9,30 +9,6 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
         if (d != null)
         {
             d.parentToReturnTo = transform;
-        }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
-        {
-            Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-            if (d != null)
-            {
-                d.placeholderParent = transform;
-            }
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
-        {
-            Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-            if (d != null && d.placeholderParent == transform)
-            {
-                d.placeholderParent = transform;
-            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using Interfaces;
 
 public class Clickable : MonoBehaviour, IPointerClickHandler
 {
@@ -8,29 +9,34 @@ public class Clickable : MonoBehaviour, IPointerClickHandler
 
     public static GameObject cardSelected;
 
-    private Card card;
-
     private void Start()
     {
         cardSelected = null;
-        card = GetComponent<CardScript>().cardInfos;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (cardSelected == null)
-        {
-            cardSelected = gameObject;
-            if (showTargets != null)
-            {
-                showTargets(gameObject);
-            }
-        }
+        GetComponent<IClickableAction>().onClickAction();
+    }
 
-        else if (cardSelected != null && cardSelected != gameObject && selected != null)
+    public static void checkShowTargets(GameObject obj)
+    {
+        if (showTargets != null)
         {
-            selected(gameObject);
-            cardSelected = null;
+            showTargets(obj);
         }
+    }
+
+    public static void checkSelected(GameObject obj)
+    {
+        if (selected != null)
+        {
+            selected(obj);
+        }
+    }
+
+    public void selfRemove()
+    {
+        Destroy(this);
     }
 }
