@@ -4,27 +4,35 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour 
 {
+    public static event System.Action<Card, Transform> deckToHand;
+
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
     [SerializeField] private Text currentScore;
     [SerializeField] private Player infos;
+    [SerializeField] private Transform handTransform;
 
     private List<Card> deck;
-    private List<Card> hand;
-    private List<Card> battleField;
-    private List<Card> dead;
+    private List<GameObject> hand;
+    private List<GameObject> battleField;
+    private List<GameObject> dead;
 
     private void Start()
     {
+        GameManager.moveToHand += addToHand;
         loadDeck();
-        loadProfileInfos();
+        //loadProfileInfos();
         
-        currentScore.text = 0.ToString();
+        //currentScore.text = 0.ToString();
         availableCards.text = deck.Count.ToString();
     }
 
     private void loadDeck()
     {
+        deck = new List<Card>();
+        hand = new List<GameObject>();
+        dead = new List<GameObject>();
+        battleField = new List<GameObject>();
         foreach (Card c in infos.getCards())
         {
             deck.Add(c);
@@ -36,13 +44,23 @@ public class PlayerScript : MonoBehaviour
         profile.sprite = infos.getProfileImage().sprite;
     }
 
-    public Card pickCard()
+    public void pickCard()
     {
-        Card c = deck.ToArray()[Random.Range(0, deck.Count)];
+        if (deck.Count > 0)
+        {
+            Card c = deck.ToArray()[Random.Range(0, deck.Count)];
+            deck.Remove(c);
+            deckToHand(c, handTransform);
+            availableCards.text = deck.Count.ToString();
+        }
+        else
+        {
+            //disable pick button
+        }
+    }
 
-        deck.Remove(c);
-        hand.Add(c);
-
-        return c;
+    private void addToHand(GameObject card)
+    {
+        hand.Add(card);
     }
 }

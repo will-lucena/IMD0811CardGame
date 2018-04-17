@@ -3,13 +3,12 @@ using Enums;
 
 public class GameManager : MonoBehaviour
 {
-    public Card[] CARDS;
     public GameObject[] deadZone;
     [SerializeField] private GameObject cardPrefab;
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
-
+    public static event System.Action<GameObject> moveToHand;
 
     private CardScript tempCard;
 
@@ -18,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         Clickable.selected += checkSelection;
         Clickable.showTargets += attackingCard;
+        PlayerScript.deckToHand += instantiateCard;
     }
 
     // Update is called once per frame
@@ -34,12 +34,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void pushCard(Transform parent)
+    public void instantiateCard(Card cardInfos, Transform parent)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
-        card.GetComponent<CardScript>().cardInfos = CARDS[Random.Range(0, CARDS.Length)];
+        card.GetComponent<CardScript>().cardInfos = cardInfos;
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
+        moveToHand(card);
     }
 
     private void checkSelection(GameObject obj)
