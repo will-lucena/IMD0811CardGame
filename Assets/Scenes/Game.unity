@@ -236,9 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaf4930b223746da955d908afd65c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadZone:
-  - {fileID: 17660340}
-  - {fileID: 224627180}
   cardPrefab: {fileID: 1136630866631454, guid: a2c13159f06cff84f93d13c446f78423, type: 2}
 --- !u!4 &198686824
 Transform:
@@ -1368,12 +1365,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99f8680f674942fc93640573b477b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 1
   profile: {fileID: 0}
   availableCards: {fileID: 2086237289}
   currentScore: {fileID: 0}
   infos: {fileID: 11400000, guid: f486034d2671c40879ea3620c002317f, type: 2}
   handTransform: {fileID: 1257078365}
+  deadZone: {fileID: 17660344}
 --- !u!1 &2008652742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,12 +1456,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99f8680f674942fc93640573b477b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 2
   profile: {fileID: 0}
   availableCards: {fileID: 1234153773}
   currentScore: {fileID: 0}
   infos: {fileID: 11400000, guid: abcd6910f471a487bb029ddc8b5acaba, type: 2}
   handTransform: {fileID: 1745746018}
+  deadZone: {fileID: 224627184}
 --- !u!1 &2078131767
 GameObject:
   m_ObjectHideFlags: 0
