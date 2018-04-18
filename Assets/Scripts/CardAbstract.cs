@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Enums;
 
-public abstract class Card : ScriptableObject
+public abstract class CardAbstract : ScriptableObject
 {
     [SerializeField] protected new string name;
     [SerializeField] protected string description;

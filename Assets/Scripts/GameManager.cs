@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void instantiateCard(Card cardInfos, Transform parent)
+    public void instantiateCard(CardAbstract cardInfos, Transform parent)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
         card.GetComponent<CardScript>().cardInfos = cardInfos;
@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
             if (card.health <= 0)
             {
                 //change it to move to correct deadzone
-                deadZone[1].GetComponent<Dead>().addToStack(obj);
+                deadZone[1].GetComponent<DeadZone>().addToStack(obj);
             }
 
         }

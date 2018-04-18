@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class Player : ScriptableObject 
+public abstract class PlayerAbstract : ScriptableObject 
 {
-    [SerializeField] protected Card[] cards;
+    [SerializeField] protected CardAbstract[] cards;
     [SerializeField] protected Image profile;
     protected int deckPower;
 
-    public Card[] getCards()
+    public CardAbstract[] getCards()
     {
         return cards;
     }

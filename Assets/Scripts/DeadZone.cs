@@ -2,7 +2,7 @@
 using UnityEngine;
 using Interfaces;
 
-public class Dead : MonoBehaviour, IClickableAction
+public class DeadZone : MonoBehaviour, IClickableAction
 {
     private List<GameObject> cards;
 

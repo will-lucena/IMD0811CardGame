@@ -2,7 +2,7 @@
 using Enums;
 
 [CreateAssetMenu(fileName = "Equip", menuName = "Cards/Equip")]
-public class EquipmentCard : Card
+public class CardEquipment : CardAbstract
 {
     [SerializeField] private Type equipType;
 

@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour 
 {
-    public static event System.Action<Card, Transform> deckToHand;
+    public static event System.Action<CardAbstract, Transform> deckToHand;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
     [SerializeField] private Text currentScore;
-    [SerializeField] private Player infos;
+    [SerializeField] private PlayerAbstract infos;
     [SerializeField] private Transform handTransform;
 
-    private List<Card> deck;
+    private List<CardAbstract> deck;
     private List<GameObject> hand;
     private List<GameObject> battleField;
     private List<GameObject> dead;
@@ -29,11 +29,11 @@ public class PlayerScript : MonoBehaviour
 
     private void loadDeck()
     {
-        deck = new List<Card>();
+        deck = new List<CardAbstract>();
         hand = new List<GameObject>();
         dead = new List<GameObject>();
         battleField = new List<GameObject>();
-        foreach (Card c in infos.getCards())
+        foreach (CardAbstract c in infos.getCards())
         {
             deck.Add(c);
         }
@@ -48,7 +48,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (deck.Count > 0)
         {
-            Card c = deck.ToArray()[Random.Range(0, deck.Count)];
+            CardAbstract c = deck.ToArray()[Random.Range(0, deck.Count)];
             deck.Remove(c);
             deckToHand(c, handTransform);
             availableCards.text = deck.Count.ToString();

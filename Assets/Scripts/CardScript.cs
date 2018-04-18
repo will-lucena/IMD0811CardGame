@@ -6,7 +6,7 @@ using System.Text;
 
 public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 {
-    public Card cardInfos;
+    public CardAbstract cardInfos;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;

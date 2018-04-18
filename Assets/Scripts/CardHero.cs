@@ -2,7 +2,7 @@
 using Enums;
 
 [CreateAssetMenu(fileName = "Hero", menuName = "Cards/Hero")]
-public class HeroCard : Card
+public class CardHero : CardAbstract
 {
     // Use this for initialization
     void Start()
