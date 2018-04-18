@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 using Enums;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject[] deadZone;
     [SerializeField] private GameObject cardPrefab;
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
     public static event System.Action<GameObject> moveToHand;
+    public static event System.Action<GameObject, CardScript> moveToDead;
+
 
     private CardScript tempCard;
+    private Coroutine cancelCoroutine;
 
     // Use this for initialization
     void Start()
@@ -20,30 +23,34 @@ public class GameManager : MonoBehaviour
         PlayerScript.deckToHand += instantiateCard;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //find a non hardcoded way to do it
-        if (Input.GetMouseButton(1))
-        {
-            Clickable.cardSelected = null;
-            if (cancelBattleLog != null)
-            {
-                cancelBattleLog();
-            }
-        }
-    }
-
-    public void instantiateCard(CardAbstract cardInfos, Transform parent)
+    public void instantiateCard(CardAbstract cardInfos, Transform parent, DeadZone deadZone)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
         card.GetComponent<CardScript>().cardInfos = cardInfos;
+        card.GetComponent<CardScript>().setDeadZone(deadZone);
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
         moveToHand(card);
     }
 
     private void checkSelection(GameObject obj)
+    {
+        battle(obj);
+
+        if (cancelBattleLog != null)
+        {
+            cancelBattleLog();
+        }
+    }
+
+    private void attackingCard(GameObject card)
+    {
+        tempCard = card.GetComponent<CardScript>();
+        tempCard.subscribeToBattle();
+        cancelCoroutine = StartCoroutine(waitingToCancel());
+    }
+
+    private void battle(GameObject obj)
     {
         CardScript card = obj.GetComponent<CardScript>();
         card.subscribeToBattle();
@@ -73,20 +80,23 @@ public class GameManager : MonoBehaviour
             if (card.health <= 0)
             {
                 //change it to move to correct deadzone
-                deadZone[1].GetComponent<DeadZone>().addToStack(obj);
+                moveToDead(obj, card);
             }
+        }
+        StopCoroutine(cancelCoroutine);
+    }
 
+    private IEnumerator waitingToCancel()
+    {
+        while (!Input.GetMouseButton(1))
+        {
+            yield return null;
         }
 
+        Clickable.cardSelected = null;
         if (cancelBattleLog != null)
         {
             cancelBattleLog();
         }
-    }
-
-    private void attackingCard(GameObject card)
-    {
-        tempCard = card.GetComponent<CardScript>();
-        tempCard.subscribeToBattle();
     }
 }

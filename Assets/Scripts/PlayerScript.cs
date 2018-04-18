@@ -4,22 +4,24 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour 
 {
-    public static event System.Action<CardAbstract, Transform> deckToHand;
+    public static event System.Action<CardAbstract, Transform, DeadZone> deckToHand;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
     [SerializeField] private Text currentScore;
     [SerializeField] private PlayerAbstract infos;
     [SerializeField] private Transform handTransform;
+    [SerializeField] private DeadZone deadZone;
 
     private List<CardAbstract> deck;
     private List<GameObject> hand;
     private List<GameObject> battleField;
-    private List<GameObject> dead;
 
     private void Start()
     {
         GameManager.moveToHand += addToHand;
+        GameManager.moveToDead += addToDead;
+        Draggable.handToBattle += addToBattleField;
         loadDeck();
         //loadProfileInfos();
         
@@ -31,7 +33,6 @@ public class PlayerScript : MonoBehaviour
     {
         deck = new List<CardAbstract>();
         hand = new List<GameObject>();
-        dead = new List<GameObject>();
         battleField = new List<GameObject>();
         foreach (CardAbstract c in infos.getCards())
         {
@@ -50,7 +51,7 @@ public class PlayerScript : MonoBehaviour
         {
             CardAbstract c = deck.ToArray()[Random.Range(0, deck.Count)];
             deck.Remove(c);
-            deckToHand(c, handTransform);
+            deckToHand(c, handTransform, deadZone);
             availableCards.text = deck.Count.ToString();
         }
         else
@@ -62,5 +63,21 @@ public class PlayerScript : MonoBehaviour
     private void addToHand(GameObject card)
     {
         hand.Add(card);
+        card.GetComponent<Clickable>().enabled = false;
+    }
+
+    private void addToDead(GameObject obj, CardScript card)
+    {
+        hand.Remove(obj);
+        card.dead();
+    }
+
+    private void addToBattleField(GameObject card)
+    {
+        hand.Remove(card);
+        battleField.Add(card);
+        card.GetComponent<Draggable>().enabled = false;
+        card.GetComponent<Clickable>().enabled = true;
+        card.GetComponent<CardScript>().subscribeToClickable();
     }
 }
