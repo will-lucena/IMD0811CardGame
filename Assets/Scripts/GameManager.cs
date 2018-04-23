@@ -22,8 +22,9 @@ public class GameManager : MonoBehaviour
     {
         Clickable.selected += checkSelection;
         Clickable.showTargets += attackingCard;
-        PlayerScript.deckToHand += instantiateCard;
 
+        players[0].deckToHand += instantiateCard;
+        players[1].deckToHand += instantiateCard;
         players[0].endMyTurn += changeTurn;
         players[1].endMyTurn += changeTurn;
         startGame();
@@ -111,6 +112,8 @@ public class GameManager : MonoBehaviour
         int playerIndex = Random.Range(0, 2);
         players[playerIndex].waitingTurn();
         activePlayer = players[1 - playerIndex].gameObject;
+
+        Debug.Log(activePlayer.name);
     }
 
     private void changeTurn(GameObject player)
@@ -127,6 +130,8 @@ public class GameManager : MonoBehaviour
             players[0].startTurn();
             activePlayer = players[0].gameObject;
         }
+
+        Debug.Log(activePlayer.name);
     }
 
 }

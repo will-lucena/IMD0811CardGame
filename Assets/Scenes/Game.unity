@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 313150256}
   m_Layer: 5
   m_Name: Battle
-  m_TagString: BattleP2
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 411123272}
   m_Layer: 0
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -784,7 +784,9 @@ MonoBehaviour:
   deadZone: {fileID: 45241977}
   pick: {fileID: 1336774437}
   battleZone: {fileID: 313150256}
-  tagToCard: BattleP2
+  tagToCard: Player2
+  hand: []
+  battleField: []
 --- !u!1 &545992129
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +798,7 @@ GameObject:
   - component: {fileID: 545992131}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -834,7 +836,9 @@ MonoBehaviour:
   deadZone: {fileID: 600315745}
   pick: {fileID: 365668334}
   battleZone: {fileID: 931540553}
-  tagToCard: BattleP1
+  tagToCard: Player1
+  hand: []
+  battleField: []
 --- !u!1 &600315744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1164,7 +1168,7 @@ GameObject:
   - component: {fileID: 931540553}
   m_Layer: 5
   m_Name: Battle
-  m_TagString: BattleP1
+  m_TagString: Player1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

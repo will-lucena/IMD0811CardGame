@@ -6,10 +6,10 @@ using System.Text;
 
 public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 {
-    public CardAbstract cardInfos;
-    public int power;
-    public int armor;
-    public int health;
+    [HideInInspector] public CardAbstract cardInfos;
+    [HideInInspector] public int power;
+    [HideInInspector] public int armor;
+    [HideInInspector] public int health;
     private DeadZone deadZone;
     public int turnCount;
 

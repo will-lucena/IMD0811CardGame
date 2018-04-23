@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public static event System.Action<CardAbstract, string, Transform, DeadZone> deckToHand;
+    public event System.Action<CardAbstract, string, Transform, DeadZone> deckToHand;
     public event System.Action<GameObject> endMyTurn;
 
     [SerializeField] private Image profile;
@@ -18,8 +18,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private string tagToCard;
 
     private List<CardAbstract> deck;
-    private List<GameObject> hand;
-    private List<GameObject> battleField;
+    public List<GameObject> hand;
+    public List<GameObject> battleField;
 
     private void Awake()
     {
@@ -70,22 +70,31 @@ public class PlayerScript : MonoBehaviour
 
     private void addToHand(GameObject card)
     {
-        hand.Add(card);
-        card.GetComponent<Clickable>().enabled = false;
+        if (card.CompareTag(tag))
+        {
+            hand.Add(card);
+            card.GetComponent<Clickable>().enabled = false;
+        }
     }
 
     private void addToDead(GameObject obj, CardScript card)
     {
-        hand.Remove(obj);
-        card.dead();
+        if (card.CompareTag(tag))
+        {
+            battleField.Remove(obj);
+            card.dead();
+        }
     }
 
     private void addToBattleField(GameObject card)
     {
-        hand.Remove(card);
-        battleField.Add(card);
-        card.GetComponent<Draggable>().enabled = false;
-        card.GetComponent<CardScript>().subscribeToClickable();
+        if (card.CompareTag(tag))
+        {
+            hand.Remove(card);
+            battleField.Add(card);
+            card.GetComponent<Draggable>().enabled = false;
+            card.GetComponent<CardScript>().subscribeToClickable();
+        }
     }
 
     public void finishTurn()
@@ -93,7 +102,6 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject card in battleField)
         {
             card.GetComponent<CardScript>().turnCount++;
-            card.GetComponent<Clickable>().enabled = true;
         }
 
         if (endMyTurn != null)
@@ -106,11 +114,26 @@ public class PlayerScript : MonoBehaviour
     {
         pick.interactable = false;
         battleZone.enabled = false;
+
+        foreach (GameObject card in battleField)
+        {
+            card.GetComponent<Clickable>().enabled = false;
+            Debug.Log(card.name);
+        }
+
     }
 
     public void startTurn()
     {
         pick.interactable = true;
         battleZone.enabled = true;
+
+        foreach (GameObject card in battleField)
+        {
+            if (card.GetComponent<CardScript>().turnCount > 0)
+            {
+                card.GetComponent<Clickable>().enabled = true;
+            }
+        }
     }
 }
