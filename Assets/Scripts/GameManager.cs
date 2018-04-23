@@ -111,7 +111,6 @@ public class GameManager : MonoBehaviour
         int playerIndex = Random.Range(0, 2);
         players[playerIndex].waitingTurn();
         activePlayer = players[1 - playerIndex].gameObject;
-
     }
 
     private void changeTurn(GameObject player)

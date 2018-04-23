@@ -85,12 +85,17 @@ public class PlayerScript : MonoBehaviour
         hand.Remove(card);
         battleField.Add(card);
         card.GetComponent<Draggable>().enabled = false;
-        card.GetComponent<Clickable>().enabled = true;
         card.GetComponent<CardScript>().subscribeToClickable();
     }
 
     public void finishTurn()
     {
+        foreach (GameObject card in battleField)
+        {
+            card.GetComponent<CardScript>().turnCount++;
+            card.GetComponent<Clickable>().enabled = true;
+        }
+
         if (endMyTurn != null)
         {
             endMyTurn(gameObject);

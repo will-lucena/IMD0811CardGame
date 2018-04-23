@@ -11,6 +11,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
     public int armor;
     public int health;
     private DeadZone deadZone;
+    public int turnCount;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;
@@ -35,6 +36,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
         health = cardInfos.getHp();
         updateDisplay();
         border.color = Color.white;
+        turnCount = 0;
     }
 
     private void targetMyself(GameObject card)
