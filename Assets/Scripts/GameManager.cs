@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     public static event System.Action<GameObject> moveToHand;
     public static event System.Action<GameObject, CardScript> moveToDead;
 
-
     private CardScript tempCard;
     private Coroutine cancelCoroutine;
 

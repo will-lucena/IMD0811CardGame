@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Enums;
 
 public class PlayerScript : MonoBehaviour 
 {
@@ -16,17 +17,20 @@ public class PlayerScript : MonoBehaviour
     private List<CardAbstract> deck;
     private List<GameObject> hand;
     private List<GameObject> battleField;
+    private State currentState;
+
+    private void Awake()
+    {
+        loadDeck();
+        //loadProfileInfos();
+        availableCards.text = deck.Count.ToString();
+    }
 
     private void Start()
     {
         GameManager.moveToHand += addToHand;
         GameManager.moveToDead += addToDead;
         Draggable.handToBattle += addToBattleField;
-        loadDeck();
-        //loadProfileInfos();
-        
-        //currentScore.text = 0.ToString();
-        availableCards.text = deck.Count.ToString();
     }
 
     private void loadDeck()
@@ -43,6 +47,8 @@ public class PlayerScript : MonoBehaviour
     private void loadProfileInfos()
     {
         profile.sprite = infos.getProfileImage().sprite;
+        availableCards.text = deck.Count.ToString();
+        currentScore.text = 0.ToString();
     }
 
     public void pickCard()
@@ -79,5 +85,25 @@ public class PlayerScript : MonoBehaviour
         card.GetComponent<Draggable>().enabled = false;
         card.GetComponent<Clickable>().enabled = true;
         card.GetComponent<CardScript>().subscribeToClickable();
+    }
+
+    public void finishPhase()
+    {
+        currentState = State.WAITING;
+    }
+
+    public void startPhase()
+    {
+        currentState = State.PICKING;
+    }
+
+    public void setupPhase()
+    {
+        currentState = State.PREPARING;
+    }
+
+    public void battlePhase()
+    {
+        currentState = State.ATTACKING;
     }
 }
