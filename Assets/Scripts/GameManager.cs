@@ -5,6 +5,9 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardPrefab;
+    [SerializeField] private PlayerScript player1;
+    [SerializeField] private PlayerScript player2;
+
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
@@ -98,4 +101,12 @@ public class GameManager : MonoBehaviour
             cancelBattleLog();
         }
     }
+
+    private IEnumerator startLoop()
+    {
+
+
+        yield return null;
+    }
+
 }

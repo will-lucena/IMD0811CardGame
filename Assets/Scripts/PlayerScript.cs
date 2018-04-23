@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Enums;
 
 public class PlayerScript : MonoBehaviour 
 {
     public static event System.Action<CardAbstract, Transform, DeadZone> deckToHand;
+    public event System.Action endMyTurn;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
@@ -17,7 +17,6 @@ public class PlayerScript : MonoBehaviour
     private List<CardAbstract> deck;
     private List<GameObject> hand;
     private List<GameObject> battleField;
-    private State currentState;
 
     private void Awake()
     {
@@ -87,23 +86,11 @@ public class PlayerScript : MonoBehaviour
         card.GetComponent<CardScript>().subscribeToClickable();
     }
 
-    public void finishPhase()
+    public void finishTurn()
     {
-        currentState = State.WAITING;
-    }
-
-    public void startPhase()
-    {
-        currentState = State.PICKING;
-    }
-
-    public void setupPhase()
-    {
-        currentState = State.PREPARING;
-    }
-
-    public void battlePhase()
-    {
-        currentState = State.ATTACKING;
+        if (endMyTurn != null)
+        {
+            endMyTurn();
+        }
     }
 }
