@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public static event System.Action<CardAbstract, Transform, DeadZone> deckToHand;
+    public static event System.Action<CardAbstract, string, Transform, DeadZone> deckToHand;
     public event System.Action<GameObject> endMyTurn;
 
     [SerializeField] private Image profile;
@@ -14,6 +14,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Transform handTransform;
     [SerializeField] private DeadZone deadZone;
     [SerializeField] private Button pick;
+    [SerializeField] private DropZone battleZone;
+    [SerializeField] private string tagToCard;
 
     private List<CardAbstract> deck;
     private List<GameObject> hand;
@@ -57,7 +59,7 @@ public class PlayerScript : MonoBehaviour
         {
             CardAbstract c = deck.ToArray()[Random.Range(0, deck.Count)];
             deck.Remove(c);
-            deckToHand(c, handTransform, deadZone);
+            deckToHand(c, tagToCard, handTransform, deadZone);
             availableCards.text = deck.Count.ToString();
         }
         else
@@ -98,10 +100,12 @@ public class PlayerScript : MonoBehaviour
     public void waitingTurn()
     {
         pick.interactable = false;
+        battleZone.enabled = false;
     }
 
     public void startTurn()
     {
         pick.interactable = true;
+        battleZone.enabled = true;
     }
 }

@@ -29,13 +29,14 @@ public class GameManager : MonoBehaviour
         startGame();
     }
 
-    public void instantiateCard(CardAbstract cardInfos, Transform parent, DeadZone deadZone)
+    public void instantiateCard(CardAbstract cardInfos, string cardTag, Transform parent, DeadZone deadZone)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
         card.GetComponent<CardScript>().cardInfos = cardInfos;
         card.GetComponent<CardScript>().setDeadZone(deadZone);
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
+        card.tag = cardTag;
         moveToHand(card);
     }
 

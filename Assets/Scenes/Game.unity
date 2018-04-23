@@ -783,6 +783,8 @@ MonoBehaviour:
   handTransform: {fileID: 1571120614}
   deadZone: {fileID: 45241977}
   pick: {fileID: 1336774437}
+  battleZone: {fileID: 313150256}
+  tagToCard: BattleP2
 --- !u!1 &545992129
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +833,8 @@ MonoBehaviour:
   handTransform: {fileID: 68800002}
   deadZone: {fileID: 600315745}
   pick: {fileID: 365668334}
+  battleZone: {fileID: 931540553}
+  tagToCard: BattleP1
 --- !u!1 &600315744
 GameObject:
   m_ObjectHideFlags: 0
