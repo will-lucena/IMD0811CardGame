@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScript : MonoBehaviour 
+public class PlayerScript : MonoBehaviour
 {
     public static event System.Action<CardAbstract, Transform, DeadZone> deckToHand;
-    public event System.Action endMyTurn;
+    public event System.Action<GameObject> endMyTurn;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
@@ -13,6 +13,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private PlayerAbstract infos;
     [SerializeField] private Transform handTransform;
     [SerializeField] private DeadZone deadZone;
+    [SerializeField] private Button pick;
 
     private List<CardAbstract> deck;
     private List<GameObject> hand;
@@ -90,7 +91,17 @@ public class PlayerScript : MonoBehaviour
     {
         if (endMyTurn != null)
         {
-            endMyTurn();
+            endMyTurn(gameObject);
         }
+    }
+
+    public void waitingTurn()
+    {
+        pick.interactable = false;
+    }
+
+    public void startTurn()
+    {
+        pick.interactable = true;
     }
 }

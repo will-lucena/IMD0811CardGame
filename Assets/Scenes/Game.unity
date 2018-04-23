@@ -332,8 +332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 1136630866631454, guid: a2c13159f06cff84f93d13c446f78423, type: 2}
-  player1: {fileID: 545992131}
-  player2: {fileID: 411123272}
+  players:
+  - {fileID: 545992131}
+  - {fileID: 411123272}
 --- !u!4 &198686824
 Transform:
   m_ObjectHideFlags: 0
@@ -781,6 +782,7 @@ MonoBehaviour:
   infos: {fileID: 11400000, guid: abcd6910f471a487bb029ddc8b5acaba, type: 2}
   handTransform: {fileID: 1571120614}
   deadZone: {fileID: 45241977}
+  pick: {fileID: 1336774437}
 --- !u!1 &545992129
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +830,7 @@ MonoBehaviour:
   infos: {fileID: 11400000, guid: f486034d2671c40879ea3620c002317f, type: 2}
   handTransform: {fileID: 68800002}
   deadZone: {fileID: 600315745}
+  pick: {fileID: 365668334}
 --- !u!1 &600315744
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &909615997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1088,6 +1091,17 @@ MonoBehaviour:
       - m_Target: {fileID: 1336774435}
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 411123272}
+        m_MethodName: finishTurn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1974,7 +1988,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pick a card
+  m_Text: Done
 --- !u!222 &1759370748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2114,7 +2128,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.9338235, g: 0.43258002, b: 0.43258002, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

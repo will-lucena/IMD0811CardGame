@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using Enums;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardPrefab;
-    [SerializeField] private PlayerScript player1;
-    [SerializeField] private PlayerScript player2;
-
+    [SerializeField] private PlayerScript[] players;
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
@@ -16,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     private CardScript tempCard;
     private Coroutine cancelCoroutine;
+    private GameObject activePlayer;
 
     // Use this for initialization
     void Start()
@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
         Clickable.selected += checkSelection;
         Clickable.showTargets += attackingCard;
         PlayerScript.deckToHand += instantiateCard;
+
+        players[0].endMyTurn += changeTurn;
+        players[1].endMyTurn += changeTurn;
+        startGame();
     }
 
     public void instantiateCard(CardAbstract cardInfos, Transform parent, DeadZone deadZone)
@@ -81,7 +85,6 @@ public class GameManager : MonoBehaviour
 
             if (card.health <= 0)
             {
-                //change it to move to correct deadzone
                 moveToDead(obj, card);
             }
         }
@@ -102,11 +105,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private IEnumerator startLoop()
+    private void startGame()
     {
+        int playerIndex = Random.Range(0, 2);
+        players[playerIndex].waitingTurn();
+        activePlayer = players[1 - playerIndex].gameObject;
 
+    }
 
-        yield return null;
+    private void changeTurn(GameObject player)
+    {
+        if (players[0].gameObject == player)
+        {
+            players[0].waitingTurn();
+            players[1].startTurn();
+            activePlayer = players[1].gameObject;
+        }
+        else
+        {
+            players[1].waitingTurn();
+            players[0].startTurn();
+            activePlayer = players[0].gameObject;
+        }
     }
 
 }
