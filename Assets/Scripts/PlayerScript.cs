@@ -93,6 +93,7 @@ public class PlayerScript : MonoBehaviour
             hand.Remove(card);
             battleField.Add(card);
             card.GetComponent<Draggable>().enabled = false;
+            card.GetComponent<Clickable>().enabled = true;
             card.GetComponent<CardScript>().subscribeToClickable();
         }
     }
@@ -117,7 +118,8 @@ public class PlayerScript : MonoBehaviour
 
         foreach (GameObject card in battleField)
         {
-            card.GetComponent<Clickable>().enabled = false;
+            //card.GetComponent<Clickable>().enabled = false;
+            card.GetComponent<CardScript>().attackTurn = false;
             Debug.Log(card.name);
         }
 
@@ -132,7 +134,9 @@ public class PlayerScript : MonoBehaviour
         {
             if (card.GetComponent<CardScript>().turnCount > 0)
             {
-                card.GetComponent<Clickable>().enabled = true;
+                //card.GetComponent<Clickable>().enabled = true;
+                card.GetComponent<CardScript>().attackTurn = true;
+                card.GetComponent<CardScript>().canAttack = true;
             }
         }
     }

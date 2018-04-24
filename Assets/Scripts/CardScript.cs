@@ -12,6 +12,8 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
     [HideInInspector] public int health;
     private DeadZone deadZone;
     public int turnCount;
+    public bool attackTurn;
+    public bool canAttack;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;
@@ -90,7 +92,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 
     public void onClickAction()
     {
-        if (Clickable.cardSelected == null)
+        if (Clickable.cardSelected == null && attackTurn && canAttack)
         {
             Clickable.cardSelected = gameObject;
             Clickable.checkShowTargets(gameObject);

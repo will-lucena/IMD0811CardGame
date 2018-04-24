@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour
             }
         }
         StopCoroutine(cancelCoroutine);
+        tempCard.canAttack = false;
     }
 
     private IEnumerator waitingToCancel()
