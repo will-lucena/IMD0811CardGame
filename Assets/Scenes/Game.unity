@@ -438,7 +438,8 @@ MonoBehaviour:
   infos: {fileID: 11400000, guid: f486034d2671c40879ea3620c002317f, type: 2}
   handTransform: {fileID: 68800002}
   deadZone: {fileID: 600315745}
-  pick: {fileID: 49169664}
+  pick: {fileID: 365668334}
+  done: {fileID: 1770333361}
   battleZone: {fileID: 931540553}
   tagToCard: Player1
   hand: []
@@ -745,7 +746,7 @@ GameObject:
   - component: {fileID: 348660079}
   m_Layer: 5
   m_Name: Battle top
-  m_TagString: Player1
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1473,6 +1474,7 @@ MonoBehaviour:
   handTransform: {fileID: 478455598}
   deadZone: {fileID: 689621004}
   pick: {fileID: 49169664}
+  done: {fileID: 299921088}
   battleZone: {fileID: 348660079}
   tagToCard: Player2
   hand: []
@@ -1673,6 +1675,7 @@ GameObject:
   - component: {fileID: 1107418091}
   - component: {fileID: 1107418090}
   - component: {fileID: 1107418089}
+  - component: {fileID: 1107418093}
   m_Layer: 9
   m_Name: Camera2
   m_TagString: Untagged
@@ -1743,6 +1746,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107418093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1107418088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8ef2cdfcac1564894b4e0f2a3ca1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 799627360}
+  zoneTarget: {fileID: 478455598}
 --- !u!1 &1157182065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,6 +1951,7 @@ GameObject:
   - component: {fileID: 1408120975}
   - component: {fileID: 1408120974}
   - component: {fileID: 1408120973}
+  - component: {fileID: 1408120977}
   m_Layer: 8
   m_Name: Camera1
   m_TagString: Untagged
@@ -2005,6 +2022,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1408120977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1408120972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8ef2cdfcac1564894b4e0f2a3ca1ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTarget: {fileID: 243511198}
+  zoneTarget: {fileID: 68800002}
 --- !u!1 &1515506894
 GameObject:
   m_ObjectHideFlags: 0

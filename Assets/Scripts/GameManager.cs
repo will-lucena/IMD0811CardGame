@@ -149,12 +149,14 @@ public class GameManager : MonoBehaviour
             players[0].waitingTurn();
             players[1].startTurn();
             activePlayer = players[1].gameObject;
+            Camera.main.targetDisplay = 1;
         }
         else
         {
             players[1].waitingTurn();
             players[0].startTurn();
             activePlayer = players[0].gameObject;
+            Camera.main.targetDisplay = 0;
         }
 
         Debug.Log(activePlayer.name);
