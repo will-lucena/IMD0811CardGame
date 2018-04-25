@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         {
             Display.displays[1].Activate();
         }
+        /*
         else
         {
             Camera c1 = GameObject.Find("Camera1").GetComponent<Camera>();
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
             c1.rect = new Rect(0, 0, 1, 0.5f);
             c2.rect = new Rect(0, 0.5f, 1, 1);
         }
+        /**/
     }
 
     public void instantiateCard(CardAbstract cardInfos, string cardTag, Transform parent, DeadZone deadZone)
@@ -60,6 +62,7 @@ public class GameManager : MonoBehaviour
         card.transform.localScale = Vector3.one;
         card.transform.localPosition = new Vector3(0, 0, 0);
         card.tag = cardTag;
+        card.layer = parent.gameObject.layer;
         moveToHand(card);
     }
 

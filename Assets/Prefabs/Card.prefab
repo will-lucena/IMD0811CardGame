@@ -513,6 +513,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardInfos: {fileID: 0}
+  power: 0
+  armor: 0
+  health: 0
+  turnCount: 0
+  attackTurn: 0
+  canAttack: 0
   cardName: {fileID: 114404756522503000}
   cardDescription: {fileID: 114812989364252432}
   cardImage: {fileID: 114744818864476656}
@@ -520,9 +526,6 @@ MonoBehaviour:
   cardDef: {fileID: 114228552471089012}
   cardHealth: {fileID: 114474891039329906}
   border: {fileID: 114931357554772014}
-  power: 0
-  armor: 0
-  health: 0
 --- !u!114 &114931357554772014
 MonoBehaviour:
   m_ObjectHideFlags: 1
