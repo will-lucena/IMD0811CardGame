@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        checkMultiDisplay();
+
         Clickable.selected += checkSelection;
         Clickable.showTargets += attackingCard;
 
@@ -30,6 +32,25 @@ public class GameManager : MonoBehaviour
         startGame();
     }
 
+    private void checkMultiDisplay()
+    {
+        if (Display.displays.Length > 1)
+        {
+            Display.displays[1].Activate();
+        }
+        else
+        {
+            Camera c1 = GameObject.Find("Camera1").GetComponent<Camera>();
+            Camera c2 = GameObject.Find("Camera2").GetComponent<Camera>();
+
+            c1.targetDisplay = 0;
+            c2.targetDisplay = 0;
+
+            c1.rect = new Rect(0, 0, 1, 0.5f);
+            c2.rect = new Rect(0, 0.5f, 1, 1);
+        }
+    }
+
     public void instantiateCard(CardAbstract cardInfos, string cardTag, Transform parent, DeadZone deadZone)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
@@ -37,6 +58,7 @@ public class GameManager : MonoBehaviour
         card.GetComponent<CardScript>().setDeadZone(deadZone);
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
+        card.transform.localPosition = new Vector3(0, 0, 0);
         card.tag = cardTag;
         moveToHand(card);
     }
