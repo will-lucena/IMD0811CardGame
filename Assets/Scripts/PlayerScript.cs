@@ -116,13 +116,12 @@ public class PlayerScript : MonoBehaviour
         pick.interactable = false;
         battleZone.enabled = false;
 
-        foreach (GameObject card in battleField)
+        foreach (GameObject obj in battleField)
         {
-            //card.GetComponent<Clickable>().enabled = false;
+            CardScript card = obj.GetComponent<CardScript>();
             card.GetComponent<CardScript>().attackTurn = false;
-            Debug.Log(card.name);
         }
-
+        updateHandView(true);
     }
 
     public void startTurn()
@@ -130,14 +129,24 @@ public class PlayerScript : MonoBehaviour
         pick.interactable = true;
         battleZone.enabled = true;
 
-        foreach (GameObject card in battleField)
+        foreach (GameObject obj in battleField)
         {
-            if (card.GetComponent<CardScript>().turnCount > 0)
+            CardScript card = obj.GetComponent<CardScript>();
+            if (card.turnCount > 0)
             {
-                //card.GetComponent<Clickable>().enabled = true;
-                card.GetComponent<CardScript>().attackTurn = true;
-                card.GetComponent<CardScript>().canAttack = true;
+                card.attackTurn = true;
+                card.canAttack = true;
             }
+        }
+        updateHandView(false);
+    }
+
+    private void updateHandView(bool isActive)
+    {
+        foreach (GameObject obj in hand)
+        {
+            CardScript card = obj.GetComponent<CardScript>();
+            card.handView(isActive);
         }
     }
 }

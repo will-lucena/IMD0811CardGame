@@ -111,10 +111,9 @@ public class GameManager : MonoBehaviour
     private void startGame()
     {
         int playerIndex = Random.Range(0, 2);
-        players[playerIndex].waitingTurn();
         activePlayer = players[1 - playerIndex].gameObject;
-
-        Debug.Log(activePlayer.name);
+        players[playerIndex].waitingTurn();
+        players[1 - playerIndex].startTurn();
     }
 
     private void changeTurn(GameObject player)
@@ -131,8 +130,5 @@ public class GameManager : MonoBehaviour
             players[0].startTurn();
             activePlayer = players[0].gameObject;
         }
-
-        Debug.Log(activePlayer.name);
     }
-
 }
