@@ -16,18 +16,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         parentToReturnTo = transform.parent;
         oldParent = transform.parent;
         transform.SetParent(parentToReturnTo.parent);
-        offsetX = transform.localPosition.x - eventData.pointerCurrentRaycast.screenPosition.x;
-        offsetY = transform.localPosition.y - eventData.pointerCurrentRaycast.screenPosition.y;
+        offsetX = transform.position.x - eventData.position.x;
+        offsetY = transform.position.y - eventData.position.y;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (eventData.pointerCurrentRaycast.screenPosition == Vector2.zero)
-        {
-            OnEndDrag(eventData);
-        }
-        transform.localPosition = new Vector3(eventData.pointerCurrentRaycast.screenPosition.x + offsetX, eventData.pointerCurrentRaycast.screenPosition.y + offsetY, 0);
+        Vector2 newPos = new Vector2(eventData.position.x + offsetX, eventData.position.y + offsetY);
+        transform.position = newPos;
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -39,8 +36,6 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             handToBattle(eventData.pointerDrag);
         }
-        transform.localPosition = new Vector3(0, 90, 0);
-        transform.localScale = Vector3.one;
     }
 
     public void selfRemove()

@@ -6,7 +6,6 @@ public class PlayerScript : MonoBehaviour
 {
     public event System.Action<CardAbstract, string, Transform, DeadZone> deckToHand;
     public event System.Action<GameObject> endMyTurn;
-    public event System.Action updateHandState;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
@@ -15,7 +14,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Transform handTransform;
     [SerializeField] private DeadZone deadZone;
     [SerializeField] private Button pick;
-    [SerializeField] private Button done;
     [SerializeField] private DropZone battleZone;
     [SerializeField] private string tagToCard;
 
@@ -76,7 +74,6 @@ public class PlayerScript : MonoBehaviour
         {
             hand.Add(card);
             card.GetComponent<Clickable>().enabled = false;
-            updateHandState();
         }
     }
 
@@ -94,7 +91,6 @@ public class PlayerScript : MonoBehaviour
         if (card.CompareTag(tag))
         {
             hand.Remove(card);
-            updateHandState();
             battleField.Add(card);
             card.GetComponent<Draggable>().enabled = false;
             card.GetComponent<Clickable>().enabled = true;
@@ -118,7 +114,6 @@ public class PlayerScript : MonoBehaviour
     public void waitingTurn()
     {
         pick.interactable = false;
-        done.interactable = false;
         battleZone.enabled = false;
 
         foreach (GameObject obj in battleField)
@@ -132,7 +127,6 @@ public class PlayerScript : MonoBehaviour
     public void startTurn()
     {
         pick.interactable = true;
-        done.interactable = true;
         battleZone.enabled = true;
 
         foreach (GameObject obj in battleField)
