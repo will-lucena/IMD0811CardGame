@@ -132,4 +132,15 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
     {
         deadZone = zone;
     }
+
+    public void handView(bool isActive)
+    {
+        foreach (Image img in GetComponentsInChildren<Image>())
+        {
+            if (img.CompareTag("Back"))
+            {
+                img.enabled = isActive;
+            }
+        }
+    }
 }
