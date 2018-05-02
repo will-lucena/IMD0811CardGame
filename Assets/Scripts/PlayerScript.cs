@@ -24,8 +24,7 @@ public class PlayerScript : MonoBehaviour
     private void Awake()
     {
         loadDeck();
-        //loadProfileInfos();
-        availableCards.text = deck.Count.ToString();
+        loadProfileInfos();
     }
 
     private void Start()
@@ -48,9 +47,9 @@ public class PlayerScript : MonoBehaviour
 
     private void loadProfileInfos()
     {
-        profile.sprite = infos.getProfileImage().sprite;
+        profile.sprite = infos.getProfileImage();
         availableCards.text = deck.Count.ToString();
-        currentScore.text = 0.ToString();
+        //currentScore.text = 0.ToString();
     }
 
     public void pickCard()

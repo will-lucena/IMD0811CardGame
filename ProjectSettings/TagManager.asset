@@ -12,6 +12,7 @@ TagManager:
   - PlayerInfos
   - Player1
   - Player2
+  - Back
   layers:
   - Default
   - TransparentFX
