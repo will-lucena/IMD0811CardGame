@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public abstract class PlayerAbstract : ScriptableObject 
 {
     [SerializeField] protected CardAbstract[] cards;
-    [SerializeField] protected Image profile;
+    [SerializeField] protected Sprite profile;
     protected int deckPower;
 
     public CardAbstract[] getCards()
@@ -12,7 +11,7 @@ public abstract class PlayerAbstract : ScriptableObject
         return cards;
     }
 
-    public Image getProfileImage()
+    public Sprite getProfileImage()
     {
         return profile;
     }

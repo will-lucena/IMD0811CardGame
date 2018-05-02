@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
     private CardScript tempCard;
     private Coroutine cancelCoroutine;
-    private GameObject activePlayer;
 
     // Use this for initialization
     void Start()
@@ -111,7 +110,6 @@ public class GameManager : MonoBehaviour
     private void startGame()
     {
         int playerIndex = Random.Range(0, 2);
-        activePlayer = players[1 - playerIndex].gameObject;
         players[playerIndex].waitingTurn();
         players[1 - playerIndex].startTurn();
     }
@@ -122,13 +120,11 @@ public class GameManager : MonoBehaviour
         {
             players[0].waitingTurn();
             players[1].startTurn();
-            activePlayer = players[1].gameObject;
         }
         else
         {
             players[1].waitingTurn();
             players[0].startTurn();
-            activePlayer = players[0].gameObject;
         }
     }
 }
