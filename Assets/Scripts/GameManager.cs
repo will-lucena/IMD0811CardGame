@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Enums;
 using System.Collections;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     private CardScript tempCard;
     private Coroutine cancelCoroutine;
+    private PlayerScript currentActivePlayer;
 
     // Use this for initialization
     void Start()
@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
         players[1].deckToHand += instantiateCard;
         players[0].endMyTurn += changeTurn;
         players[1].endMyTurn += changeTurn;
+
+        CardScript.notifyMyValor += updateScore;
+
         startGame();
     }
 
@@ -118,13 +121,20 @@ public class GameManager : MonoBehaviour
     {
         if (players[0].gameObject == player)
         {
+            currentActivePlayer = players[1];
             players[0].waitingTurn();
             players[1].startTurn();
         }
         else
         {
+            currentActivePlayer = players[0];
             players[1].waitingTurn();
             players[0].startTurn();
         }
+    }
+
+    private void updateScore(int valor)
+    {
+        currentActivePlayer.updateScore(valor);
     }
 }

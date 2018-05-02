@@ -9,6 +9,7 @@ public abstract class CardAbstract : ScriptableObject
     [SerializeField] protected int atk;
     [SerializeField] protected int def;
     [SerializeField] protected int health;
+
     protected Type type;
 
     public string getName()
@@ -44,5 +45,10 @@ public abstract class CardAbstract : ScriptableObject
     public int getHp()
     {
         return health;
+    }
+
+    public int calculateCardValor()
+    {
+        return atk + def + health;
     }
 }

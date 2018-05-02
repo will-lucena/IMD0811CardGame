@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour
     {
         profile.sprite = infos.getProfileImage();
         availableCards.text = deck.Count.ToString();
-        //currentScore.text = 0.ToString();
+        currentScore.text = 0.ToString();
     }
 
     public void pickCard()
@@ -147,5 +147,10 @@ public class PlayerScript : MonoBehaviour
             CardScript card = obj.GetComponent<CardScript>();
             card.handView(isActive);
         }
+    }
+
+    public void updateScore(int score)
+    {
+        currentScore.text = (int.Parse(currentScore.text) + score).ToString();
     }
 }

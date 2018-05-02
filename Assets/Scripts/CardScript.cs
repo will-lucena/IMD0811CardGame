@@ -6,6 +6,8 @@ using System.Text;
 
 public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 {
+    public static event System.Action<int> notifyMyValor;
+
     [HideInInspector] public CardAbstract cardInfos;
     [HideInInspector] public int power;
     [HideInInspector] public int armor;
@@ -14,6 +16,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
     public int turnCount;
     public bool attackTurn;
     public bool canAttack;
+    private int valor;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;
@@ -39,6 +42,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
         updateDisplay();
         border.color = Color.white;
         turnCount = 0;
+        valor = cardInfos.calculateCardValor();
     }
 
     private void targetMyself(GameObject card)
@@ -120,6 +124,10 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
         deadZone.addToStack(gameObject);
         GetComponent<Clickable>().enabled = false;
         Clickable.showTargets -= targetMyself;
+        if (!attackTurn)
+        {
+            notifyMyValor(valor);
+        }
     }
 
     private void OnDisable()

@@ -20,4 +20,18 @@ public abstract class PlayerAbstract : ScriptableObject
     {
         return deckPower;
     }
+
+    protected void calculateDeckPower()
+    {
+        deckPower = 0;
+        foreach (CardAbstract card in cards)
+        {
+            int cardPower = 0;
+            cardPower += card.getAtk();
+            cardPower += card.getHp();
+            cardPower += card.getDef();
+
+            deckPower += cardPower;
+        }
+    }
 }
