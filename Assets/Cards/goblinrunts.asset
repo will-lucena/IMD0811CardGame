@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: goblinrunts
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 0da9ada4ffbf7cd478227851606f1c2c, type: 3}
   atk: 1
   def: 4
   type: 0

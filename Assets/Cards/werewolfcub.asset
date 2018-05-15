@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: werewolfcub
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 640e2f1aac082914caaf7c81446098cd, type: 3}
   atk: 6
   def: 1
   type: 0

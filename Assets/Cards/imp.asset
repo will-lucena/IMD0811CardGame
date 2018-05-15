@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: imp
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 4e6cd3ca3ab584d4c825a5df869a5ab8, type: 3}
   atk: 5
   def: 2
   type: 0

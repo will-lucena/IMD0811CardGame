@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: ElfPlayer
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 4675378d18d754ac2bcae435cf91e3ff, type: 2}
-  - {fileID: 11400000, guid: 4675378d18d754ac2bcae435cf91e3ff, type: 2}
-  - {fileID: 11400000, guid: 4675378d18d754ac2bcae435cf91e3ff, type: 2}
+  - {fileID: 11400000, guid: c222c9b20dc50f94e8d2d49fcf38600d, type: 2}
+  - {fileID: 11400000, guid: 1332bad93fca8fb4fb325e8b592be289, type: 2}
+  - {fileID: 11400000, guid: 902e3728b582d494f93fc88433414658, type: 2}
   profile: {fileID: 21300000, guid: 57bcba8ef4936cd4288256c6a7f9a957, type: 3}

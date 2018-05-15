@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ratling
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: efc4322027d484544a80afdaaceab0e0, type: 3}
   atk: 5
   def: 0
   type: 0

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Name: OrcPlayer
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
-  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
-  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
-  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
-  - {fileID: 11400000, guid: 309722426d401462eb3cd8ceb258dbdd, type: 2}
+  - {fileID: 11400000, guid: e0e17c57067c2ba42a78fd7c5eec72fa, type: 2}
+  - {fileID: 11400000, guid: 0dcb3ea87037d8e4f88744b7031231b6, type: 2}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 7999a58791ce251408bf74385b397699, type: 2}
+  - {fileID: 11400000, guid: 770a1464d758eb64aa99335b8c72248a, type: 2}
   profile: {fileID: 21300000, guid: 57e86d822af00f0449e17e4a9dbd5c4c, type: 3}

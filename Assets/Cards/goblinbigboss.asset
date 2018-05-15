@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: goblinbigboss
   description: boss
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 571a03b8c44debe45b67f03fbf133229, type: 3}
   atk: 0
   def: 5
   type: 0

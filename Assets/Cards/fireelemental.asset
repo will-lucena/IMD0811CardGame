@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: fireelemental
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: d22e5d938e3e9da47817fc15892a9448, type: 3}
   atk: 6
   def: 1
   type: 0

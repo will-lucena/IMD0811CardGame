@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: thenightmother
   description: boss
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 7c2c5cfaa463bbe49bde1a668753577e, type: 3}
   atk: 5
   def: 2
   type: 0

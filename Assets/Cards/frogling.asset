@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: frogling
   description: monster
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: 473411a74aa8e5e43b25f9842861e8b4, type: 3}
   atk: 4
   def: 1
   type: 0
