@@ -2,11 +2,11 @@
 
 public abstract class PlayerAbstract : ScriptableObject 
 {
-    [SerializeField] protected CardAbstract[] cards;
+    [SerializeField] protected HeroData[] cards;
     [SerializeField] protected Sprite profile;
     protected int deckPower;
 
-    public CardAbstract[] getCards()
+    public HeroData[] getCards()
     {
         return cards;
     }
@@ -24,12 +24,12 @@ public abstract class PlayerAbstract : ScriptableObject
     protected void calculateDeckPower()
     {
         deckPower = 0;
-        foreach (CardAbstract card in cards)
+        foreach (HeroData card in cards)
         {
             int cardPower = 0;
-            cardPower += card.getAtk();
-            cardPower += card.getHp();
-            cardPower += card.getDef();
+            cardPower += card.atk;
+            cardPower += card.health;
+            cardPower += card.def;
 
             deckPower += cardPower;
         }

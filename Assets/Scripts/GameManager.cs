@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
     public static event System.Action<GameObject> moveToHand;
-    public static event System.Action<GameObject, CardScript> moveToDead;
+    public static event System.Action<GameObject, HeroCard> moveToDead;
 
-    private CardScript tempCard;
+    private HeroCard tempCard;
     private Coroutine cancelCoroutine;
     private PlayerScript currentActivePlayer;
 
@@ -27,16 +27,16 @@ public class GameManager : MonoBehaviour
         players[0].endMyTurn += changeTurn;
         players[1].endMyTurn += changeTurn;
 
-        CardScript.notifyMyValor += updateScore;
+        HeroCard.notifyMyValor += updateScore;
 
         startGame();
     }
 
-    public void instantiateCard(CardAbstract cardInfos, string cardTag, Transform parent, DeadZone deadZone)
+    public void instantiateCard(HeroData cardInfos, string cardTag, Transform parent, DeadZone deadZone)
     {
         GameObject card = Instantiate(cardPrefab) as GameObject;
-        card.GetComponent<CardScript>().cardInfos = cardInfos;
-        card.GetComponent<CardScript>().setDeadZone(deadZone);
+        card.GetComponent<HeroCard>().data = cardInfos;
+        card.GetComponent<HeroCard>().setDeadZone(deadZone);
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
         card.tag = cardTag;
@@ -55,17 +55,17 @@ public class GameManager : MonoBehaviour
 
     private void attackingCard(GameObject card)
     {
-        tempCard = card.GetComponent<CardScript>();
+        tempCard = card.GetComponent<HeroCard>();
         tempCard.subscribeToBattle();
         cancelCoroutine = StartCoroutine(waitingToCancel());
     }
 
     private void battle(GameObject obj)
     {
-        CardScript card = obj.GetComponent<CardScript>();
+        HeroCard card = obj.GetComponent<HeroCard>();
         card.subscribeToBattle();
 
-        if (card.cardInfos.getType() == Type.HERO)
+        if (card.data.type == Type.HERO)
         {
             int damage = tempCard.power - card.armor;
 

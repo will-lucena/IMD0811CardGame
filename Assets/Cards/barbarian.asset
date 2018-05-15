@@ -14,7 +14,7 @@ MonoBehaviour:
   name: barbarian
   description: hero
   image: {fileID: 0}
-  atk: 6
-  def: 0
+  atk: 2
+  def: 2
   type: 0
-  health: 2
+  health: 1

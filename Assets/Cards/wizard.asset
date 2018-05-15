@@ -14,7 +14,7 @@ MonoBehaviour:
   name: wizard
   description: hero
   image: {fileID: 0}
-  atk: 5
+  atk: 2
   def: 2
   type: 0
   health: 1

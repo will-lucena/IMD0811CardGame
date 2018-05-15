@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public event System.Action<CardAbstract, string, Transform, DeadZone> deckToHand;
+    public event System.Action<HeroData, string, Transform, DeadZone> deckToHand;
     public event System.Action<GameObject> endMyTurn;
 
     [SerializeField] private Image profile;
@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private DropZone battleZone;
     [SerializeField] private string tagToCard;
 
-    private List<CardAbstract> deck;
+    private List<HeroData> deck;
     public List<GameObject> hand;
     public List<GameObject> battleField;
 
@@ -36,10 +36,10 @@ public class PlayerScript : MonoBehaviour
 
     private void loadDeck()
     {
-        deck = new List<CardAbstract>();
+        deck = new List<HeroData>();
         hand = new List<GameObject>();
         battleField = new List<GameObject>();
-        foreach (CardAbstract c in infos.getCards())
+        foreach (HeroData c in infos.getCards())
         {
             deck.Add(c);
         }
@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (deck.Count > 0)
         {
-            CardAbstract c = deck.ToArray()[Random.Range(0, deck.Count)];
+            HeroData c = deck.ToArray()[Random.Range(0, deck.Count)];
             deck.Remove(c);
             deckToHand(c, tagToCard, handTransform, deadZone);
             availableCards.text = deck.Count.ToString();
@@ -76,7 +76,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void addToDead(GameObject obj, CardScript card)
+    private void addToDead(GameObject obj, HeroCard card)
     {
         if (card.CompareTag(tag))
         {
@@ -93,7 +93,7 @@ public class PlayerScript : MonoBehaviour
             battleField.Add(card);
             card.GetComponent<Draggable>().enabled = false;
             card.GetComponent<Clickable>().enabled = true;
-            card.GetComponent<CardScript>().subscribeToClickable();
+            card.GetComponent<HeroCard>().subscribeToClickable();
         }
     }
 
@@ -101,7 +101,7 @@ public class PlayerScript : MonoBehaviour
     {
         foreach (GameObject card in battleField)
         {
-            card.GetComponent<CardScript>().turnCount++;
+            card.GetComponent<HeroCard>().turnCount++;
         }
 
         if (endMyTurn != null)
@@ -117,8 +117,8 @@ public class PlayerScript : MonoBehaviour
 
         foreach (GameObject obj in battleField)
         {
-            CardScript card = obj.GetComponent<CardScript>();
-            card.GetComponent<CardScript>().attackTurn = false;
+            HeroCard card = obj.GetComponent<HeroCard>();
+            card.GetComponent<HeroCard>().attackTurn = false;
         }
         updateHandView(true);
     }
@@ -130,7 +130,7 @@ public class PlayerScript : MonoBehaviour
 
         foreach (GameObject obj in battleField)
         {
-            CardScript card = obj.GetComponent<CardScript>();
+            HeroCard card = obj.GetComponent<HeroCard>();
             if (card.turnCount > 0)
             {
                 card.attackTurn = true;
@@ -144,7 +144,7 @@ public class PlayerScript : MonoBehaviour
     {
         foreach (GameObject obj in hand)
         {
-            CardScript card = obj.GetComponent<CardScript>();
+            HeroCard card = obj.GetComponent<HeroCard>();
             card.handView(isActive);
         }
     }

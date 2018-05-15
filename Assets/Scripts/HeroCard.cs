@@ -4,11 +4,11 @@ using Interfaces;
 using Enums;
 using System.Text;
 
-public class CardScript : MonoBehaviour, ITargetable, IClickableAction
+public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
 {
     public static event System.Action<int> notifyMyValor;
 
-    [HideInInspector] public CardAbstract cardInfos;
+    [HideInInspector] public HeroData data;
     [HideInInspector] public int power;
     [HideInInspector] public int armor;
     [HideInInspector] public int health;
@@ -28,7 +28,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
     
     public void subscribeToClickable()
     {
-        if (cardInfos.getType() == Type.HERO)
+        if (data.type == Type.HERO)
         {
             Clickable.showTargets += targetMyself;
         }
@@ -36,13 +36,17 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 
     void Start()
     {
-        power = cardInfos.getAtk();
-        armor = cardInfos.getDef();
-        health = cardInfos.getHp();
+        power = data.atk;
+        armor = data.def;
         updateDisplay();
         border.color = Color.white;
         turnCount = 0;
-        valor = cardInfos.calculateCardValor();
+        valor = calculateCardValor();
+    }
+
+    private int calculateCardValor()
+    {
+        return data.atk + data.def + data.health;
     }
 
     private void targetMyself(GameObject card)
@@ -67,9 +71,9 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
 
     private void updateDisplay()
     {
-        cardName.text = cardInfos.name;
-        cardDescription.text = cardInfos.getDescription();
-        cardImage.sprite = cardInfos.getImage();
+        cardName.text = data.name;
+        cardDescription.text = data.description;
+        cardImage.sprite = data.image;
         cardAtk.text = power.ToString();
         cardDef.text = armor.ToString();
         cardHealth.text = health.ToString();
@@ -89,7 +93,7 @@ public class CardScript : MonoBehaviour, ITargetable, IClickableAction
         StringBuilder sb = new StringBuilder();
 
         sb.Append("Card: ");
-        sb.Append(cardInfos.name);
+        sb.Append(data.name);
 
         return sb.ToString();
     }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Enums;
 
 public abstract class CardData : ScriptableObject
 {
@@ -7,6 +8,5 @@ public abstract class CardData : ScriptableObject
     public Sprite image;
     public int atk;
     public int def;
-
-    public CardCreatorWindow.Type type;
+    public Type type;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Enums;
 
 public class CardCreatorWindow : EditorWindow
 {
@@ -278,14 +279,5 @@ public class CardCreatorWindow : EditorWindow
         sb.Append("/");
 
         return sb.ToString();
-    }
-
-    public enum Type
-    {
-        HERO,
-        WEAPON,
-        ARMOR,
-        FIELD,
-        MAGIC
     }
 }

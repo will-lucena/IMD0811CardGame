@@ -14,7 +14,7 @@ MonoBehaviour:
   name: priest
   description: hero
   image: {fileID: 0}
-  atk: 2
-  def: 2
+  atk: 3
+  def: 1
   type: 0
-  health: 4
+  health: 1

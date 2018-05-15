@@ -26,7 +26,7 @@ public class DeadZone : MonoBehaviour, IClickableAction
     {
         foreach (GameObject c in cards)
         {
-            Debug.Log(c.GetComponent<CardScript>().show());
+            Debug.Log(c.GetComponent<HeroCard>().show());
         }
     }
 
