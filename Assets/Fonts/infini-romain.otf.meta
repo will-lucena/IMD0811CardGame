@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 8ab01508ab091d6449d79bdfbb19418c
+timeCreated: 1526581633
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Infini
+  fontNames:
+  - Infini
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4af0e39074f159b4f830f3799aada5d6, type: 3}
+  - {fileID: 12800000, guid: 607cb8e9162b2a242a9f9f2cd40a3ba3, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
