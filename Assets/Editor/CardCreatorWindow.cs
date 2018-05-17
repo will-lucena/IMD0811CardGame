@@ -30,7 +30,6 @@ public class CardCreatorWindow : EditorWindow
         spriteList = new List<Sprite>();
         CardCreatorWindow window = GetWindow(typeof(CardCreatorWindow)) as CardCreatorWindow;
         window.minSize = new Vector2(300, 150);
-
         window.Show();
     }
 
@@ -151,8 +150,7 @@ public class CardCreatorWindow : EditorWindow
                         {
                             continue;
                         }
-                        Sprite sprite = Sprite.Create(draggedObject, new Rect(0.0f, 0.0f, draggedObject.width, draggedObject.height), new Vector2(0.5f, 0.5f), 100.0f);
-                        sprite.name = draggedObject.name;
+                        Sprite sprite = Resources.Load<Sprite>(draggedObject.name);
                         spriteList.Add(sprite);
                     }
                 }

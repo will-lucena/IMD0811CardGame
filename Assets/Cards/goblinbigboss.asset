@@ -14,7 +14,7 @@ MonoBehaviour:
   name: goblinbigboss
   description: boss
   image: {fileID: 21300000, guid: 571a03b8c44debe45b67f03fbf133229, type: 3}
-  atk: 0
-  def: 5
+  atk: 6
+  def: 0
   type: 0
-  health: 3
+  health: 2

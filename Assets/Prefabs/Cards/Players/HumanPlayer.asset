@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: HumanPlayer
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 8e627355995a95e47b37f34f178b0f11, type: 2}
-  - {fileID: 11400000, guid: 65a85489b82d42648a3afa199a325069, type: 2}
-  - {fileID: 11400000, guid: 08a4d37107b93584dac582d2a87d1d7f, type: 2}
   - {fileID: 11400000, guid: 4bb8db2a63625724f9a2411da28a4944, type: 2}
+  - {fileID: 11400000, guid: d309e0b169d9db8458c73b32e103e643, type: 2}
+  - {fileID: 11400000, guid: 6d05f243aaa4be6499b87b8cd6805233, type: 2}
+  - {fileID: 11400000, guid: 9aee963d54544e640b6010ed729d1bfa, type: 2}
   profile: {fileID: 21300000, guid: 60123ea03d482734cb9e9b35763db54f, type: 3}

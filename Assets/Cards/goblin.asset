@@ -14,7 +14,7 @@ MonoBehaviour:
   name: goblin
   description: monster
   image: {fileID: 21300000, guid: 02c6f38276848674ebbbb24cdbe42dae, type: 3}
-  atk: 3
-  def: 0
+  atk: 2
+  def: 5
   type: 0
-  health: 5
+  health: 1

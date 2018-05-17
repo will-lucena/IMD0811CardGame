@@ -38,6 +38,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
     {
         power = data.atk;
         armor = data.def;
+        health = data.health;
         updateDisplay();
         border.color = Color.white;
         turnCount = 0;
