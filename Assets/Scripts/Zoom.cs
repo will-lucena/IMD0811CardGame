@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Zoom : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
+{ 
     private Vector3 initialScale;
     private Transform parent;
     private Transform myCanvas;

@@ -11,5 +11,6 @@ link para icones:   http://game-icons.net/delapouite/originals/wood-club.html
                     http://game-icons.net/delapouite/originals/heart-beats.html
                     http://game-icons.net/lorc/originals/pirate-grave.html
                     https://www.flaticon.com/free-icon/zzz-sleep-symbol_31116#term=sleep&page=1&position=78
+                    http://game-icons.net/viscious-speed/abstract/abstract-111.html
 
 link para fonte e background da carta:  https://www.fairway3games.com/free-poker-sized-card-templates/

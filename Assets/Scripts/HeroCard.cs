@@ -7,11 +7,13 @@ using System.Text;
 public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
 {
     public static event System.Action<int> notifyMyValor;
+    public static event System.Func<Sprite> requestSprite;
 
     [HideInInspector] public HeroData data;
     [HideInInspector] public int power;
     [HideInInspector] public int armor;
     [HideInInspector] public int health;
+    [HideInInspector] public Image state;
     private DeadZone deadZone;
     public int turnCount;
     public bool attackTurn;
@@ -25,6 +27,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
     [SerializeField] private Text cardDef;
     [SerializeField] private Text cardHealth;
     [SerializeField] private Image border;
+    [SerializeField] private GameObject actionsDropdown;
     
     public void subscribeToClickable()
     {
@@ -75,6 +78,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
         cardName.text = data.name;
         cardDescription.text = data.description;
         cardImage.sprite = data.image;
+        state.sprite = requestSprite();
         cardAtk.text = power.ToString();
         cardDef.text = armor.ToString();
         cardHealth.text = health.ToString();
@@ -99,7 +103,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
         return sb.ToString();
     }
 
-    public void onClickAction()
+    public void onLeftClickAction()
     {
         if (Clickable.cardSelected == null && attackTurn && canAttack)
         {
@@ -111,6 +115,12 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
             Clickable.checkSelected(gameObject);
             Clickable.cardSelected = null;
         }
+    }
+
+    public void onRightClickAction(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        actionsDropdown.SetActive(true);
+        actionsDropdown.GetComponent<Dropdown>().OnPointerClick(eventData);
     }
 
     public void subscribeToCancelLog()

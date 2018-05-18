@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public static event System.Action cancelBattleLog;
     public static event System.Action<GameObject> moveToHand;
     public static event System.Action<GameObject, HeroCard> moveToDead;
+    public Sprite sleepingIcon;
+    public Sprite activeIcon;
 
     private HeroCard tempCard;
     private Coroutine cancelCoroutine;
@@ -28,6 +30,9 @@ public class GameManager : MonoBehaviour
         players[1].endMyTurn += changeTurn;
 
         HeroCard.notifyMyValor += updateScore;
+        HeroCard.requestSprite += getSleepingIcon;
+
+        PlayerScript.requestSprite += getActiveIcon;
 
         startGame();
     }
@@ -136,5 +141,15 @@ public class GameManager : MonoBehaviour
     private void updateScore(int valor)
     {
         currentActivePlayer.updateScore(valor);
+    }
+
+    private Sprite getSleepingIcon()
+    {
+        return sleepingIcon;
+    }
+
+    private Sprite getActiveIcon()
+    {
+        return activeIcon;
     }
 }

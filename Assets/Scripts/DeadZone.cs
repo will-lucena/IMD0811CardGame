@@ -5,6 +5,7 @@ using Interfaces;
 public class DeadZone : MonoBehaviour, IClickableAction
 {
     private List<GameObject> cards;
+    [SerializeField] private Sprite deadIcon;
 
 	// Use this for initialization
 	void Start ()
@@ -19,6 +20,7 @@ public class DeadZone : MonoBehaviour, IClickableAction
         card.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
         card.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
         card.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        card.GetComponent<HeroCard>().state.sprite = deadIcon;
         cards.Add(card);
     }
 
@@ -30,8 +32,13 @@ public class DeadZone : MonoBehaviour, IClickableAction
         }
     }
 
-    public void onClickAction()
+    public void onLeftClickAction()
     {
         showAll();
+    }
+
+    public void onRightClickAction(UnityEngine.EventSystems.PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }

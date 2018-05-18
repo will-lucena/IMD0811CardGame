@@ -16,7 +16,17 @@ public class Clickable : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        GetComponent<IClickableAction>().onClickAction();
+        switch (eventData.button)
+        {
+            case PointerEventData.InputButton.Left:
+                GetComponent<IClickableAction>().onLeftClickAction();
+            break;
+
+            case PointerEventData.InputButton.Right:
+                GetComponent<IClickableAction>().onRightClickAction(eventData);
+            break;
+        }
+        
     }
 
     public static void checkShowTargets(GameObject obj)

@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     public event System.Action<HeroData, string, Transform, DeadZone> deckToHand;
     public event System.Action<GameObject> endMyTurn;
+    public static event System.Func<Sprite> requestSprite;
 
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
@@ -118,7 +119,7 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject obj in battleField)
         {
             HeroCard card = obj.GetComponent<HeroCard>();
-            card.GetComponent<HeroCard>().attackTurn = false;
+            card.attackTurn = false;
         }
         updateHandView(true);
     }
@@ -135,6 +136,7 @@ public class PlayerScript : MonoBehaviour
             {
                 card.attackTurn = true;
                 card.canAttack = true;
+                card.state.sprite = requestSprite();
             }
         }
         updateHandView(false);

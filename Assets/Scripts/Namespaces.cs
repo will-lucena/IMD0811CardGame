@@ -19,6 +19,7 @@ namespace Interfaces
 
     public interface IClickableAction
     {
-        void onClickAction();
+        void onLeftClickAction();
+        void onRightClickAction(UnityEngine.EventSystems.PointerEventData eventData);
     }
 }
