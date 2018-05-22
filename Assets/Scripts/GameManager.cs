@@ -94,6 +94,7 @@ public class GameManager : MonoBehaviour
         }
         StopCoroutine(cancelCoroutine);
         tempCard.canAttack = false;
+        tempCard.updateState(State.SLEEPING);
     }
 
     private IEnumerator waitingToCancel()
@@ -119,7 +120,11 @@ public class GameManager : MonoBehaviour
 
     private void changeTurn(GameObject player)
     {
-        if (players[0].gameObject == player)
+        if (verifyEndGame())
+        {
+            endGame();
+        }
+        else if (players[0].gameObject == player)
         {
             currentActivePlayer = players[1];
             players[0].waitingTurn();
@@ -136,5 +141,31 @@ public class GameManager : MonoBehaviour
     private void updateScore(int valor)
     {
         currentActivePlayer.updateScore(valor);
+    }
+
+    private bool verifyEndGame()
+    {
+        return players[0].getAvailableCards() == 0 && players[1].getAvailableCards() == 0;
+    }
+
+    private void endGame()
+    {
+        string finalMessage;
+        int score1 = players[0].getScore();
+        int score2 = players[1].getScore();
+        if (score1 > score2)
+        {
+            finalMessage = "Player 1 wins";
+        }
+        else if (score2 > score1)
+        {
+            finalMessage = "Player 2 wins";
+        }
+        else
+        {
+            finalMessage = "Draw";
+        }
+
+        Debug.Log(finalMessage);
     }
 }

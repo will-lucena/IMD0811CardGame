@@ -17,6 +17,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
     public bool attackTurn;
     public bool canAttack;
     private int valor;
+    public Sprite sleepingIcon;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;
@@ -25,6 +26,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
     [SerializeField] private Text cardDef;
     [SerializeField] private Text cardHealth;
     [SerializeField] private Image border;
+    [SerializeField] private Image state;
     
     public void subscribeToClickable()
     {
@@ -43,6 +45,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
         border.color = Color.white;
         turnCount = 0;
         valor = calculateCardValor();
+        state.sprite = sleepingIcon;
     }
 
     private int calculateCardValor()
@@ -154,6 +157,19 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
             {
                 img.enabled = isActive;
             }
+        }
+    }
+
+    public void updateState(State state)
+    {
+        switch (state)
+        {
+            case State.ACTIVE:
+                this.state.sprite = null;
+                break;
+            case State.SLEEPING:
+                this.state.sprite = sleepingIcon;
+                break;
         }
     }
 }

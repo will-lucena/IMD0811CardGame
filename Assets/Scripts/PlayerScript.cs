@@ -118,7 +118,8 @@ public class PlayerScript : MonoBehaviour
         foreach (GameObject obj in battleField)
         {
             HeroCard card = obj.GetComponent<HeroCard>();
-            card.GetComponent<HeroCard>().attackTurn = false;
+            card.attackTurn = false;
+            card.updateState(Enums.State.SLEEPING);
         }
         updateHandView(true);
     }
@@ -135,6 +136,7 @@ public class PlayerScript : MonoBehaviour
             {
                 card.attackTurn = true;
                 card.canAttack = true;
+                card.updateState(Enums.State.ACTIVE);
             }
         }
         updateHandView(false);
@@ -152,5 +154,15 @@ public class PlayerScript : MonoBehaviour
     public void updateScore(int score)
     {
         currentScore.text = (int.Parse(currentScore.text) + score).ToString();
+    }
+
+    public int getScore()
+    {
+        return int.Parse(currentScore.text);
+    }
+
+    public int getAvailableCards()
+    {
+        return int.Parse(availableCards.text);
     }
 }
