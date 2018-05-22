@@ -1,17 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using Interfaces;
 
 public class Clickable : MonoBehaviour, IPointerClickHandler
 {
-    public static event System.Action<Transform> showTargets;
+    public static event System.Action<GameObject> showTargets;
+    public static event System.Action<GameObject> selected;
+
+    public static GameObject cardSelected;
+
+    private void Start()
+    {
+        cardSelected = null;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (showTargets != null && !transform.parent.CompareTag("Hand"))
+        GetComponent<IClickableAction>().onClickAction();
+    }
+
+    public static void checkShowTargets(GameObject obj)
+    {
+        if (showTargets != null)
         {
-            showTargets(transform.parent);
+            showTargets(obj);
         }
+    }
+
+    public static void checkSelected(GameObject obj)
+    {
+        if (selected != null)
+        {
+            selected(obj);
+        }
+    }
+
+    public void selfRemove()
+    {
+        Destroy(this);
     }
 }

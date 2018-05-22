@@ -10,6 +10,10 @@ TagManager:
   - Push
   - Dead
   - PlayerInfos
+  - Player1
+  - Player2
+  - Back
+  - Canvas
   layers:
   - Default
   - TransparentFX

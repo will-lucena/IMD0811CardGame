@@ -1,39 +1,21 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class DropZone : MonoBehaviour, IDropHandler
 {
+    public static event System.Action<CardData> addCard;
+
     public void OnDrop(PointerEventData eventData)
     {
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-        if (d != null)
+        if (d != null && d.CompareTag(tag))
         {
             d.parentToReturnTo = transform;
         }
-    }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
+        if (addCard != null)
         {
-            Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-            if (d != null)
-            {
-                d.placeholderParent = transform;
-            }
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        if (eventData.pointerDrag != null)
-        {
-            Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-            if (d != null && d.placeholderParent == transform)
-            {
-                d.placeholderParent = transform;
-            }
+            addCard(eventData.pointerDrag.GetComponent<Content>().data);
         }
     }
 }
