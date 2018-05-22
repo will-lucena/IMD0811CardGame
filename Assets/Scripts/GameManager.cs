@@ -44,7 +44,11 @@ public class GameManager : MonoBehaviour
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
         card.tag = cardTag;
-        moveToHand(card);
+        Debug.Log(card.GetComponent<HeroCard>().data.name);
+        if (moveToHand != null)
+        {
+            moveToHand(card);
+        }
     }
 
     private void checkSelection(GameObject obj)
@@ -118,6 +122,13 @@ public class GameManager : MonoBehaviour
     private void startGame()
     {
         int playerIndex = Random.Range(0, 2);
+
+        for (int i = 0; i < 4; i++)
+        {
+            players[0].pickCard();
+            players[1].pickCard();
+        }
+
         players[playerIndex].waitingTurn();
         players[1 - playerIndex].startTurn();
     }

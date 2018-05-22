@@ -50,6 +50,11 @@ public class DeckBuilder : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        DropZone.addCard -= addCard;
+    }
+
     private void OnDestroy()
     {
         DropZone.addCard -= addCard;
