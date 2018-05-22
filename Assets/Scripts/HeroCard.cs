@@ -18,6 +18,7 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
     public bool canAttack;
     private int valor;
     public Sprite sleepingIcon;
+    public Sprite deadIcon;
 
     [SerializeField] private Text cardName;
     [SerializeField] private Text cardDescription;
@@ -169,6 +170,9 @@ public class HeroCard : MonoBehaviour, ITargetable, IClickableAction
                 break;
             case State.SLEEPING:
                 this.state.sprite = sleepingIcon;
+                break;
+            case State.DEAD:
+                this.state.sprite = deadIcon;
                 break;
         }
     }

@@ -13,6 +13,7 @@
     {
         ACTIVE, 
         SLEEPING,
+        DEAD
     }
 }
 

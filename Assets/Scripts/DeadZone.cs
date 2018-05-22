@@ -19,6 +19,7 @@ public class DeadZone : MonoBehaviour, IClickableAction
         card.GetComponent<RectTransform>().anchorMin = new Vector2(0.5f, 0.5f);
         card.GetComponent<RectTransform>().anchorMax = new Vector2(0.5f, 0.5f);
         card.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        card.GetComponent<HeroCard>().updateState(Enums.State.DEAD);
         cards.Add(card);
     }
 

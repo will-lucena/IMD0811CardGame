@@ -564,6 +564,7 @@ MonoBehaviour:
   attackTurn: 0
   canAttack: 0
   sleepingIcon: {fileID: 21300000, guid: 3586569c1f4274345a12c515476f8a72, type: 3}
+  deadIcon: {fileID: 21300000, guid: fdcad4d22ee2cad4ea7e02b0ebf69bf3, type: 3}
   cardName: {fileID: 114404756522503000}
   cardDescription: {fileID: 114812989364252432}
   cardImage: {fileID: 114744818864476656}

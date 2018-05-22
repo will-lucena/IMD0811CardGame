@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Button pick;
     [SerializeField] private DropZone battleZone;
     [SerializeField] private string tagToCard;
+    [SerializeField] private GameObject pickButton;
+    [SerializeField] private GameObject doneButton;
 
     private List<HeroData> deck;
     public List<GameObject> hand;
@@ -61,10 +63,6 @@ public class PlayerScript : MonoBehaviour
             deckToHand(c, tagToCard, handTransform, deadZone);
             availableCards.text = deck.Count.ToString();
         }
-        else
-        {
-            //disable pick button
-        }
     }
 
     private void addToHand(GameObject card)
@@ -99,6 +97,12 @@ public class PlayerScript : MonoBehaviour
 
     public void finishTurn()
     {
+        if (deck.Count <= 0)
+        {
+            pickButton.SetActive(false);
+            doneButton.SetActive(true);
+        }
+
         foreach (GameObject card in battleField)
         {
             card.GetComponent<HeroCard>().turnCount++;
@@ -164,5 +168,10 @@ public class PlayerScript : MonoBehaviour
     public int getAvailableCards()
     {
         return int.Parse(availableCards.text);
+    }
+
+    public Sprite getImage()
+    {
+        return profile.sprite;
     }
 }

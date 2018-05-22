@@ -150,22 +150,23 @@ public class GameManager : MonoBehaviour
 
     private void endGame()
     {
-        string finalMessage;
         int score1 = players[0].getScore();
         int score2 = players[1].getScore();
         if (score1 > score2)
         {
-            finalMessage = "Player 1 wins";
+            Persistance.winner = players[0].getImage();
+            Persistance.message = "Win";
         }
         else if (score2 > score1)
         {
-            finalMessage = "Player 2 wins";
+            Persistance.winner = players[1].getImage();
+            Persistance.message = "Win";
         }
         else
         {
-            finalMessage = "Draw";
+            Persistance.message = "Draw";
         }
 
-        Debug.Log(finalMessage);
+        LoadScene.loadScene("Final");
     }
 }

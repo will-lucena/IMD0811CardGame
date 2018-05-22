@@ -937,6 +937,8 @@ MonoBehaviour:
   pick: {fileID: 1336774437}
   battleZone: {fileID: 313150256}
   tagToCard: Player2
+  pickButton: {fileID: 1336774435}
+  doneButton: {fileID: 909615996}
   hand: []
   battleField: []
 --- !u!1 &529116033
@@ -1057,6 +1059,8 @@ MonoBehaviour:
   pick: {fileID: 365668334}
   battleZone: {fileID: 931540553}
   tagToCard: Player1
+  pickButton: {fileID: 365668333}
+  doneButton: {fileID: 1770333359}
   hand: []
   battleField: []
 --- !u!1 &567225879
