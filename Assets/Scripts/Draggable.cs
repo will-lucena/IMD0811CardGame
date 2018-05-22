@@ -32,7 +32,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
 
-        if (oldParent != parentToReturnTo)
+        if (oldParent != parentToReturnTo && handToBattle != null)
         {
             handToBattle(eventData.pointerDrag);
         }

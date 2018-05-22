@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private PlayerScript[] players;
+    [SerializeField] private Sprite[] playerSprites;
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
         players[1].endMyTurn += changeTurn;
 
         HeroCard.notifyMyValor += updateScore;
+
+        players[0].loadDeck(Persistance.player1Deck, playerSprites[0]);
+        players[1].loadDeck(Persistance.player2Deck, playerSprites[1]);
 
         startGame();
     }
@@ -154,16 +158,17 @@ public class GameManager : MonoBehaviour
         int score2 = players[1].getScore();
         if (score1 > score2)
         {
-            Persistance.winner = players[0].getImage();
+            Persistance.winner = playerSprites[2];
             Persistance.message = "Win";
         }
         else if (score2 > score1)
         {
-            Persistance.winner = players[1].getImage();
+            Persistance.winner = playerSprites[3];
             Persistance.message = "Win";
         }
         else
         {
+            Persistance.winner = playerSprites[4];
             Persistance.message = "Draw";
         }
 

@@ -485,6 +485,12 @@ MonoBehaviour:
   players:
   - {fileID: 545992131}
   - {fileID: 411123272}
+  playerSprites:
+  - {fileID: 21300000, guid: 0a4d330f10b6b3642919be7b5409c6ab, type: 3}
+  - {fileID: 21300000, guid: c9e86b834c4fe8a4c85dac972a5b50a5, type: 3}
+  - {fileID: 21300000, guid: a869fb44206fd1148aaf9ef29ac3f8e6, type: 3}
+  - {fileID: 21300000, guid: 4fb058a1631dc1e4f80f9d3401f02eac, type: 3}
+  - {fileID: 21300000, guid: cd0fd814e87359246ba5120838924594, type: 3}
 --- !u!4 &198686824
 Transform:
   m_ObjectHideFlags: 0
@@ -931,7 +937,6 @@ MonoBehaviour:
   profile: {fileID: 529116036}
   availableCards: {fileID: 68636024}
   currentScore: {fileID: 94965841}
-  infos: {fileID: 11400000, guid: abcd6910f471a487bb029ddc8b5acaba, type: 2}
   handTransform: {fileID: 1571120614}
   deadZone: {fileID: 45241977}
   pick: {fileID: 1336774437}
@@ -1053,7 +1058,6 @@ MonoBehaviour:
   profile: {fileID: 2072945636}
   availableCards: {fileID: 1768202980}
   currentScore: {fileID: 929198376}
-  infos: {fileID: 11400000, guid: f486034d2671c40879ea3620c002317f, type: 2}
   handTransform: {fileID: 68800002}
   deadZone: {fileID: 600315745}
   pick: {fileID: 365668334}

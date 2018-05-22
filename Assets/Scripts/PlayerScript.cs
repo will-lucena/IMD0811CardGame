@@ -10,7 +10,6 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
     [SerializeField] private Text currentScore;
-    [SerializeField] private PlayerAbstract infos;
     [SerializeField] private Transform handTransform;
     [SerializeField] private DeadZone deadZone;
     [SerializeField] private Button pick;
@@ -23,12 +22,6 @@ public class PlayerScript : MonoBehaviour
     public List<GameObject> hand;
     public List<GameObject> battleField;
 
-    private void Awake()
-    {
-        loadDeck();
-        loadProfileInfos();
-    }
-
     private void Start()
     {
         GameManager.moveToHand += addToHand;
@@ -36,20 +29,23 @@ public class PlayerScript : MonoBehaviour
         Draggable.handToBattle += addToBattleField;
     }
 
-    private void loadDeck()
+    public void loadDeck(List<CardData> cards, Sprite image)
     {
         deck = new List<HeroData>();
         hand = new List<GameObject>();
         battleField = new List<GameObject>();
-        foreach (HeroData c in infos.getCards())
+
+        foreach (HeroData hero in cards)
         {
-            deck.Add(c);
+            deck.Add(hero);
         }
+
+        loadProfileInfos(image);
     }
 
-    private void loadProfileInfos()
+    private void loadProfileInfos(Sprite image)
     {
-        profile.sprite = infos.getProfileImage();
+        profile.sprite = image;
         availableCards.text = deck.Count.ToString();
         currentScore.text = 0.ToString();
     }
