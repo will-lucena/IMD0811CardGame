@@ -1,4 +1,4 @@
-##Links para assets usados no projeto
+## Links para assets usados no projeto
 
 * Icone de morto: http://game-icons.net/lorc/originals/pirate-grave.html
 * Icone de dormindo: https://www.flaticon.com/free-icon/zzz-sleep-symbol_31116#term=sleep&page=1&position=78
