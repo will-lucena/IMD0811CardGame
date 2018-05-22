@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         card.transform.SetParent(parent);
         card.transform.localScale = Vector3.one;
         card.tag = cardTag;
-        Debug.Log(card.GetComponent<HeroCard>().data.name);
         if (moveToHand != null)
         {
             moveToHand(card);
@@ -127,8 +126,8 @@ public class GameManager : MonoBehaviour
         {
             players[0].pickCard();
             players[1].pickCard();
-        }
 
+        }
         players[playerIndex].waitingTurn();
         players[1 - playerIndex].startTurn();
     }

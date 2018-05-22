@@ -5,3 +5,4 @@
 * Icone de vencedor: http://game-icons.net/delapouite/originals/medallist.html
 * Icone de player: http://game-icons.net/delapouite/originals/egyptian-walk.html
 * Images das cartas: https://opengameart.org/users/justin-nichol
+* Musica de fundo da partida: https://opengameart.org/content/theme-song-8-bit
