@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardPrefab;
     [SerializeField] private PlayerScript[] players;
+    [SerializeField] private Sprite[] playerSprites;
 
     public static event System.Action battleLog;
     public static event System.Action cancelBattleLog;
@@ -33,6 +34,9 @@ public class GameManager : MonoBehaviour
         HeroCard.requestSprite += getSleepingIcon;
 
         PlayerScript.requestSprite += getActiveIcon;
+
+        players[0].loadDeck(Persistance.player1Deck, playerSprites[0]);
+        players[1].loadDeck(Persistance.player2Deck, playerSprites[1]);
 
         startGame();
     }
@@ -99,6 +103,7 @@ public class GameManager : MonoBehaviour
         }
         StopCoroutine(cancelCoroutine);
         tempCard.canAttack = false;
+        tempCard.updateState(State.SLEEPING);
     }
 
     private IEnumerator waitingToCancel()
@@ -124,7 +129,11 @@ public class GameManager : MonoBehaviour
 
     private void changeTurn(GameObject player)
     {
-        if (players[0].gameObject == player)
+        if (verifyEndGame())
+        {
+            endGame();
+        }
+        else if (players[0].gameObject == player)
         {
             currentActivePlayer = players[1];
             players[0].waitingTurn();
@@ -151,5 +160,33 @@ public class GameManager : MonoBehaviour
     private Sprite getActiveIcon()
     {
         return activeIcon;
+    }
+
+    private bool verifyEndGame()
+    {
+        return players[0].getAvailableCards() == 0 && players[1].getAvailableCards() == 0;
+    }
+
+    private void endGame()
+    {
+        int score1 = players[0].getScore();
+        int score2 = players[1].getScore();
+        if (score1 > score2)
+        {
+            Persistance.winner = playerSprites[2];
+            Persistance.message = "Win";
+        }
+        else if (score2 > score1)
+        {
+            Persistance.winner = playerSprites[3];
+            Persistance.message = "Win";
+        }
+        else
+        {
+            Persistance.winner = playerSprites[4];
+            Persistance.message = "Draw";
+        }
+
+        LoadScene.loadScene("Final");
     }
 }

@@ -11,22 +11,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Image profile;
     [SerializeField] private Text availableCards;
     [SerializeField] private Text currentScore;
-    [SerializeField] private PlayerAbstract infos;
     [SerializeField] private Transform handTransform;
     [SerializeField] private DeadZone deadZone;
     [SerializeField] private Button pick;
     [SerializeField] private DropZone battleZone;
     [SerializeField] private string tagToCard;
+    [SerializeField] private GameObject pickButton;
+    [SerializeField] private GameObject doneButton;
 
     private List<HeroData> deck;
     public List<GameObject> hand;
     public List<GameObject> battleField;
-
-    private void Awake()
-    {
-        loadDeck();
-        loadProfileInfos();
-    }
 
     private void Start()
     {
@@ -35,20 +30,23 @@ public class PlayerScript : MonoBehaviour
         Draggable.handToBattle += addToBattleField;
     }
 
-    private void loadDeck()
+    public void loadDeck(List<CardData> cards, Sprite image)
     {
         deck = new List<HeroData>();
         hand = new List<GameObject>();
         battleField = new List<GameObject>();
-        foreach (HeroData c in infos.getCards())
+
+        foreach (HeroData hero in cards)
         {
-            deck.Add(c);
+            deck.Add(hero);
         }
+
+        loadProfileInfos(image);
     }
 
-    private void loadProfileInfos()
+    private void loadProfileInfos(Sprite image)
     {
-        profile.sprite = infos.getProfileImage();
+        profile.sprite = image;
         availableCards.text = deck.Count.ToString();
         currentScore.text = 0.ToString();
     }
@@ -61,10 +59,6 @@ public class PlayerScript : MonoBehaviour
             deck.Remove(c);
             deckToHand(c, tagToCard, handTransform, deadZone);
             availableCards.text = deck.Count.ToString();
-        }
-        else
-        {
-            //disable pick button
         }
     }
 
@@ -100,6 +94,12 @@ public class PlayerScript : MonoBehaviour
 
     public void finishTurn()
     {
+        if (deck.Count <= 0)
+        {
+            pickButton.SetActive(false);
+            doneButton.SetActive(true);
+        }
+
         foreach (GameObject card in battleField)
         {
             card.GetComponent<HeroCard>().turnCount++;
@@ -120,6 +120,7 @@ public class PlayerScript : MonoBehaviour
         {
             HeroCard card = obj.GetComponent<HeroCard>();
             card.attackTurn = false;
+            card.updateState(Enums.State.SLEEPING);
         }
         updateHandView(true);
     }
@@ -137,6 +138,7 @@ public class PlayerScript : MonoBehaviour
                 card.attackTurn = true;
                 card.canAttack = true;
                 card.state.sprite = requestSprite();
+                card.updateState(Enums.State.ACTIVE);
             }
         }
         updateHandView(false);
@@ -154,5 +156,20 @@ public class PlayerScript : MonoBehaviour
     public void updateScore(int score)
     {
         currentScore.text = (int.Parse(currentScore.text) + score).ToString();
+    }
+
+    public int getScore()
+    {
+        return int.Parse(currentScore.text);
+    }
+
+    public int getAvailableCards()
+    {
+        return int.Parse(availableCards.text);
+    }
+
+    public Sprite getImage()
+    {
+        return profile.sprite;
     }
 }

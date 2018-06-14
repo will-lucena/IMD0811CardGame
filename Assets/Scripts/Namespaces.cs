@@ -8,6 +8,13 @@
         FIELD,
         MAGIC
     }
+
+    public enum State
+    {
+        ACTIVE, 
+        SLEEPING,
+        DEAD
+    }
 }
 
 namespace Interfaces
