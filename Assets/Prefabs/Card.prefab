@@ -1446,11 +1446,8 @@ MonoBehaviour:
   cardDef: {fileID: 114253420092636664}
   cardHealth: {fileID: 114444261900519854}
   border: {fileID: 114931357554772014}
-<<<<<<< HEAD
   actionsDropdown: {fileID: 1097550088625610}
-=======
   state: {fileID: 114793296615913304}
->>>>>>> fe29f7d2b20e48f208d1b5fa6f5259f8546acdcd
 --- !u!114 &114931357554772014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2034,7 +2031,6 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
-<<<<<<< HEAD
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224614479243729780
 RectTransform:
@@ -2053,8 +2049,6 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 20, y: 20}
-=======
->>>>>>> fe29f7d2b20e48f208d1b5fa6f5259f8546acdcd
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224652408944973732
 RectTransform:
